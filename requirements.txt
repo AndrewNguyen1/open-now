@@ -1,4 +1,4 @@
-gunicorn
+gunicorn==0.14.2
 certifi==2018.11.29
 chardet==3.0.4
 defusedxml==0.5.0
