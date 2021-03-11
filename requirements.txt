@@ -8,7 +8,6 @@ django-allauth
 django-heroku
 idna
 oauthlib
-pkg-resources
 psycopg2
 python3-openid
 pytz
