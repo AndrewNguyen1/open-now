@@ -1,3 +1,0 @@
-client id: 555295511724-0qbco1o2ubfkoq3qno18t2l1nhm028ih.apps.googleusercontent.com
-
-secret key: zWaTGqCnHx863T5w1ooKTofA
