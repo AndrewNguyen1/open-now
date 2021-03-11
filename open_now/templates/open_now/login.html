@@ -1,0 +1,76 @@
+<!-- HTML Codes by Quackit.com -->
+<!DOCTYPE html>
+<title>Login</title>
+<body style="background-color:lightblue;text-align:center">
+<style>
+div.container {
+background-color: #add8e6;
+}
+div.container p {
+font-family: Arial;
+font-size: 48px;
+font-style: normal;
+font-weight: normal;
+text-decoration: none;
+text-transform: none;
+text-align: center;
+color: #000000;
+background-color: #add8e6;
+}
+</style>
+
+<div class="container">
+<p>Welcome to Open Now</p>
+
+
+<style>
+
+
+.button:hover {background: #add8e6;}
+
+.login {color: black;}
+* {
+  box-sizing: border-box; /* always useful when working with border or padding properties, or any other property that can effect the box-model */
+}
+
+.wrapper {
+  text-align: center;
+  background: lightblue; /*background color of the area underneath the button*/
+  padding: 20px;
+}
+
+.button {
+  display: inline-block; /* naturally creates "whitespace" between inline elements */
+}
+
+.button1 {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  padding:20px;
+  color: black; 
+  border: 3px solid #000000;
+  transition: 0.3s; /*speed of color transition during hover*/
+  min-width: 100px;
+}
+
+.button1.with-margin {
+  margin: auto 10px; /* for additional spacing between inline elements*/
+}
+
+/*controls what color the button turns when you hover over it*/
+.button1:hover{
+  border: 3px solid #FFA62F;
+  color: #FFA62F;
+}
+
+</style>
+
+<!-- the actual button -->
+<div class="wrapper">
+	<form action="/accounts/google/login/">
+		<button class="button button1">Login to continue</button>
+	</form>
+
+</div>
+<br>
+</div>
