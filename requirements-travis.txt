@@ -4,7 +4,6 @@ certifi
 chardet
 defusedxml
 dj-database-url
-Django
 django-allauth
 django-heroku
 idna
