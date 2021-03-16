@@ -53,10 +53,21 @@
                     <a class="nav-link" aria-current="page" href="{% url 'open_now:home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'open_now:login' %}">Login</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                        {% if user.is_authenticated %}
+                        <h6 class="dropdown-header">Signed in as <strong>{{user.username}}</strong></h6>
+                        {% else %}
+                        <h6 class="dropdown-header">Signed in as <strong>guest</strong></h6>
+                        {% endif %}
+                        <div class="dropdown-divider"></div>
+                        <li><a class="dropdown-item" href="{% url 'open_now:login' %}">Login</a></li>
+                        <!-- ADD TEMPORARY LOGOUT FUNCTIONALITY HERE -->
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
                 </li>
             </ul>
             <form class="d-flex">
