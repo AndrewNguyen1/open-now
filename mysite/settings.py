@@ -60,6 +60,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+MIDDLEWARE_CLASSES = (
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+)
+
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
@@ -139,7 +145,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/open_now/home'
-
+LOGOUT_REDIRECT_URL = '/open_now/home'
+#
+# <<<<<<< HEAD
 # Activate Django-Heroku.
 try:
     import django_heroku
@@ -147,4 +155,7 @@ try:
 except ImportError:
     found = False
 
-#
+# #
+# =======
+# django_heroku.settings(locals(), test_runner=False)
+# >>>>>>> f149f427bed413dfb2a92ebcd9a7277b65ea0550
