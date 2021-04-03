@@ -4,6 +4,10 @@ from django.db import models
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
+from .models import Business
+from django.urls import reverse
+from django.http import HttpResponse, HttpResponseRedirect
+
 
 from django.views import generic
 
@@ -30,3 +34,29 @@ class HomeView(generic.ListView):
         """
         return
 
+class BusinessView(generic.ListView):
+    template_name = 'open_now/business_list.html'
+    context_object_name = 'business_list'
+
+    def get_queryset(self):
+        """
+        """
+        return Business.objects.all()
+        return
+
+class BusinessFormView(generic.ListView):
+    template_name = 'open_now/business_form.html'
+
+    def get_queryset(self):
+        """
+        """
+        return
+
+def get_business(request):
+
+    business_name = request.POST['business_name']
+    description = request.POST['description']
+    t = Business(business_name=business_name,description=description, phone_number = 1232310912, website = 'asd.com',
+                 business_category = "REST")
+    t.save()
+    return HttpResponseRedirect(reverse('open_now:business_list'))

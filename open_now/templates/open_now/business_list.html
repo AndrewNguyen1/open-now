@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BusinessList</title>
+</head>
+<body>
+{% if business_list %}
+    <ul class="list-group">
+    {% for thought in business_list %}
+        <li class="list-group-item"><h3>{{thought.business_name}}</h3>{{ thought.description }} </li>
+
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No thoughts are available.</p>
+{% endif %}
+</body>
+</html>
