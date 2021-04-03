@@ -1,62 +1,57 @@
-<!DOCTYPE html>
-<title>Login</title>
-<body style="background-color:lightblue;text-align:center">
-<style>
-div.container {
-background-color: #add8e6;
-}
-div.container p {
-font-family: Arial;
-font-size: 48px;
-font-style: normal;
-font-weight: normal;
-text-decoration: none;
-text-transform: none;
-text-align: center;
-color: #000000;
-background-color: #add8e6;
-}
-</style>
+<!doctype html>
+{% load static %}
+<html lang="en" class="h-100">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+	<meta name="generator" content="Hugo 0.80.0">
+	<title>Login to OpenNow</title>
 
-<div class="container">
-<p>Welcome to Open Now</p>
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
 
 
-<style>
+
+	<!-- Bootstrap core CSS -->
+	<!-- using bootstrap CDN temporarily -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+	<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+
+		@media (min-width: 768px) {
+			.bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			}
+		}
+	</style>
 
 
-.button:hover {background: #add8e6;}
+	<!-- Custom styles for this template -->
+	<!-- temp custom style path, will upgrade to new UI/css later in semester -->
+	<link href="{% static 'css/cover.css' %}" rel="stylesheet">
+</head>
+<body class="d-flex h-100 text-center text-white bg-dark">
 
-.login {color: black;}
-* {
-  box-sizing: border-box; /* always useful when working with border or padding properties, or any other property that can effect the box-model */
-}
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+	<header class="mb-auto">
+		<div>
+			<h3 class="float-md-start mb-0">OpenNow</h3>
+			<nav class="nav nav-masthead justify-content-center float-md-end">
+				<a class="nav-link active" aria-current="page" href="#">Welcome</a>
+				<a class="nav-link" href="{% url 'open_now:home' %}">Homepage</a>
+				<a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
+			</nav>
+		</div>
+	</header>
 
-.wrapper {
-  text-align: center;
-  background: lightblue; /*background color of the area underneath the button*/
-  padding: 20px;
-}
-
-.button {
-  display: inline-block; /* naturally creates "whitespace" between inline elements */
-}
-
-.button1 {
-  background-color: Transparent;
-  background-repeat:no-repeat;
-  padding:20px;
-  color: black; 
-  border: 3px solid #000000;
-  transition: 0.3s; /*speed of color transition during hover*/
-  min-width: 100px;
-}
-
-
-.button1.with-margin {
-  margin: auto 10px; /* for additional spacing between inline elements*/
-}
-=======
 	<main class="px-3">
 		<h1>Welcome to OpenNow</h1>
 		<p class="lead">Charlottesville and Albemarle County's premier site for exploring new and improved small businesses in the post-COVID era. <br><strong>What's new? What's changed? Let's get started.</strong></p>
@@ -68,21 +63,14 @@ background-color: #add8e6;
 		</p>
 	</main>
 
-
-/*controls what color the button turns when you hover over it*/
-.button1:hover{
-  border: 3px solid #FFA62F;
-  color: #FFA62F;
-}
-
-</style>
-
-<!-- the actual button -->
-<div class="wrapper">
-	<form action="/accounts/google/login/">
-		<button class="button button1">Login to continue</button>
-	</form>
-
+	<footer class="mt-auto text-white-50">
+		<!--<p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>-->
+		<p>© 2021 by Project Team B-26 for CS 3240 at UVA CS</p>
+	</footer>
 </div>
-<br>
-</div>
+
+<!-- js bundle script for bootstrap-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+</body>
+</html>
