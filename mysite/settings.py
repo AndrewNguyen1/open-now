@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-#import django_heroku
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -156,13 +156,13 @@ LOGOUT_REDIRECT_URL = '/open_now/home'
 #
 # <<<<<<< HEAD
 # Activate Django-Heroku.
-try:
-    import django_heroku
-    django_heroku.settings(locals(), test_runner=False)
-except ImportError:
-    found = False
+# try:
+#     import django_heroku
+#     django_heroku.settings(locals(), test_runner=False)
+# except ImportError:
+#     found = False
 
 # #
 # =======
-# django_heroku.settings(locals(), test_runner=False)
+django_heroku.settings(locals(), test_runner=False)
 # >>>>>>> f149f427bed413dfb2a92ebcd9a7277b65ea0550
