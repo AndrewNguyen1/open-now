@@ -14,7 +14,7 @@ class Business(models.Model):
 	business_name = models.CharField(max_length=50)
 	description = models.CharField(max_length=200)
 	website = models.CharField(max_length=50)
-	phone_number = models.IntegerField()
+	phone_number = models.CharField(max_length=10)
 
 	class BusinessCategory(models.TextChoices):
 		RESTAURANT = 'REST', _('Restaurant')
@@ -33,9 +33,3 @@ class Business(models.Model):
 
 
 
-
-
-# class Choice(models.Model):
-#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-#     choice_text = models.CharField(max_length=200)
-#     votes = models.IntegerField(default=0)
