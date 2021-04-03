@@ -52,9 +52,22 @@ background-color: #add8e6;
   min-width: 100px;
 }
 
+
 .button1.with-margin {
   margin: auto 10px; /* for additional spacing between inline elements*/
 }
+=======
+	<main class="px-3">
+		<h1>Welcome to OpenNow</h1>
+		<p class="lead">Charlottesville and Albemarle County's premier site for exploring new and improved small businesses in the post-COVID era. <br><strong>What's new? What's changed? Let's get started.</strong></p>
+		<p class="lead">
+			<a href="{% url 'open_now:home' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Continue to Homepage</a>
+			<form action="/accounts/google/login/">
+				<a href="/accounts/google/login" class="btn btn-lg btn-secondary fw-bold text-white bg-success">Login with Google »</a>
+			</form>
+		</p>
+	</main>
+
 
 /*controls what color the button turns when you hover over it*/
 .button1:hover{
