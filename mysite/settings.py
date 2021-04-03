@@ -158,7 +158,7 @@ LOGOUT_REDIRECT_URL = '/open_now/home'
 # Activate Django-Heroku.
 try:
     import django_heroku
-    django_heroku.settings(locals())
+    django_heroku.settings(locals(), test_runner=False)
 except ImportError:
     found = False
 
