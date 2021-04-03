@@ -90,8 +90,8 @@
     <div class="starter-template text-center py-5 px-3">
 {% if business_list %}
     <ul class="list-group">
-    {% for thought in business_list %}
-        <li class="list-group-item"><h3>{{thought.business_name}}</h3>{{ thought.description }} </li>
+    {% for business in business_list %}
+        <li class="list-group-item"><h3>{{business.business_name}}</h3>{{ business.description }} </li>
 
     {% endfor %}
     </ul>
