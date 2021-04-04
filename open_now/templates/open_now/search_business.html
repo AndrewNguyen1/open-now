@@ -85,14 +85,14 @@
   </nav>
   
   <main class="container" style="padding-top:5rem">
-  
+    {% if businesses %}
       <div class="starter-template text-center py-5 px-3">
         <div>
             <h1>Search Result</h1>
             <ul>
-                {% for b in business %}
+                {% for b in businesses %}
                 <li>
-                  {{ business.business_name }}, {{ business.website }}
+                  {{ b.business_name }}, {{ b.website }}
                 </li>
                 {% endfor %}
             </ul>
@@ -101,6 +101,12 @@
       </div>
 
       </div>
+      {% else %}
+      <br>
+      <br>
+    <p>No businesses match the search.</p>
+
+{% endif %}
   </main><!-- /.container -->
   
   
