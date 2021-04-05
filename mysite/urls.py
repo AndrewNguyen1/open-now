@@ -21,4 +21,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('open_now/', include('open_now.urls')),
     path('accounts/open_now/', include('open_now.urls')),
+    path('home/map/', include('open_now.urls', namespace='measurements')),
 ]
