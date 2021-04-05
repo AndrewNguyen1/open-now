@@ -5,6 +5,7 @@ defusedxml
 dj-database-url
 Django
 django-allauth
+django-crispy-forms
 django-heroku
 geoip2
 geopy
