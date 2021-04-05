@@ -7,6 +7,7 @@ Django
 django-allauth
 django-crispy-forms
 django-heroku
+folium
 geoip2
 geopy
 idna
