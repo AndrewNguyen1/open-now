@@ -5,6 +5,7 @@ chardet
 defusedxml
 dj-database-url
 django-allauth
+django-crispy-forms
 django-heroku
 geoip2
 geopy
