@@ -6,6 +6,8 @@ defusedxml
 dj-database-url
 django-allauth
 django-heroku
+geoip2
+geopy
 idna
 oauthlib
 psycopg2
