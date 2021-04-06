@@ -7,6 +7,7 @@ from django.template import loader
 
 from django.views import generic
 
+
 from .models import Login, Business, Measurement
 from .forms import MeasurementModelForm
 
@@ -72,7 +73,6 @@ def search_business(request):
     businesses = Business.objects.filter(business_name__icontains=srh, business_category__icontains=srh, description__icontains=srh)
     params={'businesses': businesses, 'search':srh}
     return render(request, 'open_now/search_business.html', params)
-
 
 
 def calculate_distance_view(request):
@@ -154,3 +154,4 @@ def calculate_distance_view(request):
 	}
 
 	return render(request, 'open_now/main.html', context)
+

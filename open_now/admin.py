@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import Business, Measurement
 
 # Register your models here.

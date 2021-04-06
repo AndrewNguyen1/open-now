@@ -9,7 +9,6 @@ class Login(models.Model):
 
 
 
-
 class Business(models.Model):
 
 	business_name = models.CharField(max_length=50)
