@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 {% load socialaccount %}
 {% load static %}
@@ -76,10 +79,10 @@
                     </ul>
                 </li>
             </ul>
-                <form action="{% url 'open_now:search_result' %}" method="get">
-                    <input class="form-control me-2" name="query" type="search" placeholder="Search (work in progress)" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+            <form action="{% url 'open_now:search_result' %}" method="get">
+                <input class="form-control me-2" name="query" type="search" placeholder="Search (work in progress)" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>
@@ -87,19 +90,26 @@
 <main class="container" style="padding-top:5rem">
 
     <div class="starter-template text-center py-5 px-3">
-        <h1>You've reached the OpenNow homepage.</h1>
-        <p class="lead">This site is still in development.<strong> Check back later to explore local businesses.</strong><br>Verify that the account information below, if shown, is correct.</p>
-
-        {% if user.is_authenticated %}
-        <div class="alert alert-success" role="alert">
-            If you are seeing this, your Google Account is authenticated as <strong>{{user.username}}</strong>!
-        </div>
-
-        {% else %}
-        <div class="alert alert-info" role="alert">
-            If you are seeing this, your Google Account is not authenticated, and you are viewing this site as a <strong>guest</strong>.
-        </div>
-        {% endif %}
+<form action="/open_now/new-business/" method="post">
+    {% csrf_token %}
+<div class="form-group-column">
+  <label for="business_name" class="form-label">Business Name:</label><br>
+  <input type="text" class="form-control" id="business_name" name="business_name"><br>
+  <label for="description" class="form-label">Description</label><br>
+  <input type="text" class="form-control" id="description" name="description">
+      <label for="phone_number" class="form-label">Phone Number</label><br>
+  <input type="text" class="form-control" id="phone_number" name="phone_number">
+     <label for="website" class="form-label">Website</label><br>
+  <input type="text" class="form-control" id="website" name="website">
+<label for="business_category">Choose a category:</label>
+  <select id="business_category" name="business_category">
+    <option value="REST">Restaurant</option>
+    <option value="SHOP">Retail</option>
+    <option value="GYM">Gym or Workout</option>
+    <option value="NONE">Other or Unspecified</option>
+  </select>
+<p></p>
+    <button type="submit" class="btn btn-primary" value="submit">Submit!</button>
     </div>
 
 </main><!-- /.container -->

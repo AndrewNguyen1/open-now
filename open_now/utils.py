@@ -12,7 +12,6 @@ def get_ip_address(request):
 	return ip
 
 
-
 # get geographic information
 def get_geo(ip):
 	g = GeoIP2()

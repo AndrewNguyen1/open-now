@@ -76,10 +76,10 @@
                     </ul>
                 </li>
             </ul>
-                <form action="{% url 'open_now:search_result' %}" method="get">
-                    <input class="form-control me-2" name="query" type="search" placeholder="Search (work in progress)" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+            <form action="{% url 'open_now:search_result' %}" method="get">
+                <input class="form-control me-2" name="query" type="search" placeholder="Search (work in progress)" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>
@@ -87,21 +87,37 @@
 <main class="container" style="padding-top:5rem">
 
     <div class="starter-template text-center py-5 px-3">
-        <h1>You've reached the OpenNow homepage.</h1>
-        <p class="lead">This site is still in development.<strong> Check back later to explore local businesses.</strong><br>Verify that the account information below, if shown, is correct.</p>
+{% if business_list %}
+    <div class="card-group">
+    {% for business in business_list %}
 
-        {% if user.is_authenticated %}
-        <div class="alert alert-success" role="alert">
-            If you are seeing this, your Google Account is authenticated as <strong>{{user.username}}</strong>!
-        </div>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{business.business_name}}</h5>
+    <p class="card-text">{{business.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{business.phone_number}}</li>
 
-        {% else %}
-        <div class="alert alert-info" role="alert">
-            If you are seeing this, your Google Account is not authenticated, and you are viewing this site as a <strong>guest</strong>.
-        </div>
-        {% endif %}
+  </ul>
+  <div class="card-body">
+    <a href={{business.website}} class="card-link">Find us Online!</a>
+
+  </div>
+</div>
+
+    {% endfor %}
     </div>
 
+
+
+{% else %}
+    <p>No businesses are available.</p>
+
+
+{% endif %}
+    </div>
 </main><!-- /.container -->
 
 
