@@ -1,3 +1,4 @@
+
 <!doctype html>
 {% load socialaccount %}
 {% load static %}
@@ -53,6 +54,12 @@
                     <a class="nav-link" aria-current="page" href="{% url 'open_now:home' %}">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'open_now:business_list' %}">Businesses</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'open_now:business_form' %}">Submit a Business</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -66,14 +73,14 @@
                         <div class="dropdown-divider"></div>
                         <li><a class="dropdown-item" href="{% url 'open_now:login' %}">Login</a></li>
                         <!-- ADD TEMPORARY LOGOUT FUNCTIONALITY HERE -->
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="{% url 'open_now:login' %}">Logout</a></li>
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search (work in progress)" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                <form action="{% url 'open_now:search_result' %}" method="get">
+                    <input class="form-control me-2" name="query" type="search" placeholder="Search (work in progress)" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
         </div>
     </div>
 </nav>
