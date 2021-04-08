@@ -32,7 +32,7 @@ class Business(models.Model):
 		return self.business_name
 
 class Forum(models.Model):
-    name=models.CharField(max_length=200,default="anonymous" )
+    name=models.CharField(max_length=200)
     email=models.CharField(max_length=200,null=True)
     topic= models.CharField(max_length=300)
     description = models.CharField(max_length=1000,blank=True)
