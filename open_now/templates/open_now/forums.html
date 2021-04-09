@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataFlair discussion forum</title>
+    <title>Open Now discussion forum</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
     <style>
         .box{
@@ -22,17 +22,15 @@
             </form>
         </h2>
             <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
-            
-            
-            {%for f in all_forums %}
-            
+            {% for f in forums %}
+
                 <div class="card box container">
                     <br>
                     <h5 class="card-title">
                         <a><h3>{{f.topic}}</h3></a> 
                         <div class="card-body container">
                                 <p>{{f.description}}</p>
-                            </h5>
+                    </h5>
                             <hr>
                             <p> By: {{f.name}}</p>
                             email- {{f.email}}
@@ -40,15 +38,15 @@
                             <h4>Views from other users</h4>
                             {%for discuss in discussions%}
                             {%for objs in discuss%}  
-                            {% if objs.Forum == f %}
-                               {{objs.discuss}}
+                            {% if objs.forum == f %}
+                               <li>{{objs.discuss}}</li>
                                <br>
                             {% endif %}
                             {%endfor%}
                             {%endfor%}
                             <form method="POST" action="{% url 'open_now:new_discussion' %}">
                                 {% csrf_token %}
-                            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add more</button>
+                            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add More</button>
                             </form>
                         </div>
                 </div>
