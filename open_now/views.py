@@ -8,6 +8,7 @@ from .models import Business, Forum, Discussion
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import * 
+from django.shortcuts import redirect
 
 
 from django.views import generic
@@ -77,7 +78,7 @@ def new_forum(request):
         form = CreateInForum(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/open_now/forums')
     context ={'form':form}
     return render(request,'open_now/new_forum.html',context)
  
@@ -87,6 +88,18 @@ def new_discussion(request):
         form = CreateInDiscussion(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/open_now/forums')
     context ={'form':form}
     return render(request,'open_now/new_discussion.html',context)
+
+def forums(request):
+    all_forums=Forum.objects.all()
+    count=all_forums.count()
+    discussions=[]
+    for i in all_forums:
+        discussions.append(i.discussion_set.all())
+ 
+    context={'forums':all_forums,
+            'count':count,
+            'discussions':discussions}
+    return render(request,'open_now/forums.html',context)
