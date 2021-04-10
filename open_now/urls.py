@@ -10,7 +10,10 @@ urlpatterns = [
     path('businesses/', views.BusinessView.as_view(), name='business_list'),
     path('business-form/', views.BusinessFormView.as_view(), name='business_form'),
     path('new-business/', views.get_business, name='new_business'),
-    path('search/', views.search_business, name='search_result')
+    path('search/', views.search_business, name='search_result'),
+    path('new-forum/', views.new_forum, name='new_forum'),
+    path('new-discussion/', views.new_discussion, name='new_discussion'),
+    path('forums/', views.forums, name='forums')
 
 ]
 
