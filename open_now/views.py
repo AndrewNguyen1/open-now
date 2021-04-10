@@ -103,3 +103,10 @@ def forums(request):
             'count':count,
             'discussions':discussions}
     return render(request,'open_now/forums.html',context)
+
+
+def business_specs(request, business_name):
+    business = Business.objects.get(business_name__startswith=business_name)
+    context = {'business': business}
+
+    return render(request, 'open_now/business_specs.html', context)
