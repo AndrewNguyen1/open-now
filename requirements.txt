@@ -1,11 +1,13 @@
+Django
 gunicorn
 certifi
 chardet
 defusedxml
 dj-database-url
-Django
+crispy_forms
 django-allauth
 django-heroku
+folium
 idna
 oauthlib
 psycopg2

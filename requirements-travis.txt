@@ -4,8 +4,10 @@ certifi
 chardet
 defusedxml
 dj-database-url
+crispy_forms
 django-allauth
 django-heroku
+folium
 idna
 oauthlib
 psycopg2
