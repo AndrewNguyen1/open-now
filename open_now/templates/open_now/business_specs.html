@@ -110,6 +110,28 @@
   </div>
 </div>
 
+        {% if reviews %}
+    {% for r in reviews %}
+
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{r.review_text}}</li>
+<li class="list-group-item">{{r.rating}}</li>
+  </ul>
+
+
+    {% endfor %}
+    </div>
+
+
+
+{% else %}
+    <p>No reviews are available yet.</p>
+
+
+{% endif %}
+
+
          <form action="/open_now/new-review/" method="POST">
     {% csrf_token %}
 <div class="form-group-column">

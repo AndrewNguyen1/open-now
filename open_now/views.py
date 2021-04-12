@@ -107,7 +107,8 @@ def forums(request):
 
 def business_specs(request, business_name):
     business = Business.objects.get(business_name__startswith=business_name)
-    context = {'business': business}
+
+    context = {'business': business, 'reviews': business.review_set.all()}
 
     return render(request, 'open_now/business_specs.html', context)
 
@@ -120,5 +121,5 @@ def get_review(request):
     rating = request.POST['rating']
     b.review_set.create(review_text = review_text, rating = rating)
 
-    return HttpResponseRedirect(reverse('open_now:business_specs'))
+    return HttpResponseRedirect(reverse('open_now:business_list'))
 
