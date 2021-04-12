@@ -1,4 +1,5 @@
-from django.contrib.gis.geoip2 import GeoIP2
+# from django.contrib.gis.geoip2 import GeoIP2
+from django.contrib.gis.geoip import GeoIP
 import requests
 from urllib.parse import urlencode, urlparse, parse_qsl
 
@@ -17,12 +18,12 @@ def get_ip_address(request):
 
 
 # get geographic information
-def get_geo(ip):
-	g = GeoIP2()
-	country = g.country(ip)
-	city = g.city(ip)
-	lat, lon = g.lat_lon(ip)
-	return country, city, lat, lon
+# def get_geo(ip):
+# 	g = GeoIP2()
+# 	country = g.country(ip)
+# 	city = g.city(ip)
+# 	lat, lon = g.lat_lon(ip)
+# 	return country, city, lat, lon
 
 # centers the map
 def get_center_coordinates(latA, longA, latB=None, longB=None):
