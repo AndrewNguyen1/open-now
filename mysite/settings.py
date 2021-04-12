@@ -151,6 +151,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 LOGIN_REDIRECT_URL = '/open_now/home'
 LOGOUT_REDIRECT_URL = '/open_now/home'
 #
@@ -161,6 +164,7 @@ try:
     django_heroku.settings(locals(), test_runner=False)
 except ImportError:
     found = False
+
 
 # #
 # =======

@@ -15,6 +15,15 @@ class Business(models.Model):
 	description = models.CharField(max_length=200)
 	website = models.CharField(max_length=50)
 	phone_number = models.CharField(max_length=10)
+	
+	class BusinessImage(models.Model):
+		title = models.CharField(max_length=200)
+		image = models.ImageField(upload_to='images')
+
+		def __str__(self):
+			return self.title
+
+	#business_image = models.CharField(max_length = 255)
 
 	class BusinessCategory(models.TextChoices):
 		RESTAURANT = 'REST', _('Restaurant')

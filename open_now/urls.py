@@ -1,6 +1,8 @@
 from django.urls import path
 
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'open_now'
 
@@ -14,6 +16,7 @@ urlpatterns = [
     path('new-forum/', views.new_forum, name='new_forum'),
     path('new-discussion/', views.new_discussion, name='new_discussion'),
     path('forums/', views.forums, name='forums')
-
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
