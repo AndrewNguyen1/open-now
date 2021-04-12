@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-#import django_heroku
 import os
+#import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -131,9 +131,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -149,6 +146,7 @@ USE_TZ = True
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -158,14 +156,17 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 LOGIN_REDIRECT_URL = '/open_now/home'
-LOGOUT_REDIRECT_URL = '/open_now/home'
-
-#django_heroku.settings(locals(), test_runner=False)
-
-# Activate Django-Heroku.
+LOGOUT_REDIRECT_URL = '/open_now/'
+#
+# <<<<<<< HEAD
+#Activate Django-Heroku.
 try:
-    # Configure Django App for Heroku.
     import django_heroku
-    django_heroku.settings(locals())
+    django_heroku.settings(locals(), test_runner=False)
 except ImportError:
     found = False
+
+# #
+# =======
+#django_heroku.settings(locals(), test_runner=False)
+# >>>>>>> f149f427bed413dfb2a92ebcd9a7277b65ea0550

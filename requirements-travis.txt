@@ -5,11 +5,7 @@ chardet
 defusedxml
 dj-database-url
 django-allauth
-django-crispy-forms
 django-heroku
-folium
-geoip2
-geopy
 idna
 oauthlib
 psycopg2

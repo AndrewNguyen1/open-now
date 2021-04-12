@@ -1,8 +1,11 @@
 from django.contrib import admin
 
-from .models import Business, Measurement
-
 # Register your models here.
 
+from .models import Business, Forum, Discussion, Location, Search
+
 admin.site.register(Business)
-admin.site.register(Measurement)
+admin.site.register(Forum)
+admin.site.register(Discussion)
+admin.site.register(Location)
+admin.site.register(Search)

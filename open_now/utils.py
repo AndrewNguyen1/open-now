@@ -1,6 +1,10 @@
 from django.contrib.gis.geoip2 import GeoIP2
+import requests
+from urllib.parse import urlencode, urlparse, parse_qsl
 
-# helper functions
+GOOGLE_API_KEY = 'AIzaSyCU9tondG6nw0-PcEmHfpPVJVrOsiWlo4w'
+
+# helper functions and classes
 
 # get the current location based on the ip address
 def get_ip_address(request):
@@ -37,3 +41,95 @@ def get_zoom(distance):
 		return 4
 	else:
 		return 2
+
+# the google maps client
+class GoogleMapsClient(object):
+	lat = None
+	lng = None
+	data_type = 'json'
+	location_query = None
+	api_key = None
+
+	def __init__(self, api_key=None, address_or_postal_code=None, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.location_query = address_or_postal_code
+		self.api_key = api_key
+		if api_key == None:
+			raise Exception("API key required")
+
+		if self.location_query != None:
+			self.extract_lat_lng()
+
+	# given a properly formatted location, get its latitude and longitude
+	def extract_lat_lng(self, location=None):
+		loc_query = self.location_query
+
+		if location != None:
+			loc_query = location
+
+		endpoint = f'https://maps.googleapis.com/maps/api/geocode/{self.data_type}'
+		params = {'address': loc_query, 'key': self.api_key}
+
+		url_params = urlencode(params)
+		url = f"{endpoint}?{url_params}"
+		# print(url)
+
+		r = requests.get(url)
+		if r.status_code not in range(200, 299):
+			return {}
+
+		lat_lng = {}
+		try:
+			lat_lng = r.json()['results'][0]['geometry']['location']
+		except:
+			pass
+
+		lat, lng = lat_lng.get('lat'), lat_lng.get('lng')
+		self.lat = lat
+		self.lng = lng
+
+		return lat, lng
+
+	# perform the search based on a keywork ex: "Mexican Food" or "Bagels"
+ 	# radius is in meters
+	def search(self, keyword="", radius=1000, location=None):
+		lat, lng = self.lat, self.lng
+
+		if location != None:
+			lat, lng = self.extract_lat_lng(location=location)
+
+		endpoint = f"https://maps.googleapis.com/maps/api/place/nearbysearch/{self.data_type}"
+		params = {
+			'key': self.api_key,
+			'location': f'{lat},{lng}',
+			'radius': radius,
+			'keyword': keyword
+		}
+
+		params_encoded = urlencode(params)
+		places_url = f"{endpoint}?{params_encoded}"
+
+		r = requests.get(places_url)
+
+		if r.status_code not in range(200, 299):
+			return {}
+
+		return r.json()
+
+	# get the location's details (provided in fields) based on a place_id
+	def detail(self, place_id="ChIJhzHBsAe6j4ARvq9oi8u-bqQ", fields=["name", "rating", "formatted_phone_number", "formatted_address"]):
+		detail_base_endpoint = f"https://maps.googleapis.com/maps/api/place/details/{self.data_type}"
+		detail_params = {
+			"place_id": f"{place_id}",
+			"fields": ",".join(fields),
+			"key": self.api_key
+
+		}
+		detail_params_encoded = urlencode(detail_params)
+		detail_url = f"{detail_base_endpoint}?{detail_params_encoded}"
+
+		r = requests.get(detail_url)
+		if r.status_code not in range(200, 299):
+			return {}
+
+		return r.json()
