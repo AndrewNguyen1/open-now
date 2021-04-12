@@ -110,3 +110,15 @@ def business_specs(request, business_name):
     context = {'business': business}
 
     return render(request, 'open_now/business_specs.html', context)
+
+def get_review(request):
+
+    business_name = request.POST['business_name']
+    b = Business.objects.get(business_name__startswith=business_name)
+
+    review_text = request.POST['review_text']
+    rating = request.POST['rating']
+    b.review_set.create(review_text = review_text, rating = rating)
+
+    return HttpResponseRedirect(reverse('open_now:business_specs'))
+
