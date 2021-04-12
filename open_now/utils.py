@@ -1,5 +1,5 @@
 # from django.contrib.gis.geoip2 import GeoIP2
-from django.contrib.gis.geoip import GeoIP
+# from django.contrib.gis.geoip import GeoIP
 import requests
 from urllib.parse import urlencode, urlparse, parse_qsl
 
