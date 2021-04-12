@@ -8,6 +8,7 @@ django-allauth
 django-crispy-forms
 django-heroku
 folium
+geopy
 idna
 oauthlib
 psycopg2
