@@ -111,14 +111,14 @@
                                 <p>{{f.description}}</p>
                     </h5>
                             <hr>
-                            <p> By: {{f.name}}</p>
-                            email- {{f.email}}
+                            <p> By: {{user.username}}</p>
+                            Email: {{user.email}}
                             <hr>     
-                            <h4>Views from other users</h4>
+                            <h4>Responses</h4>
                             {%for discuss in discussions%}
                             {%for objs in discuss%}  
                             {% if objs.forum == f %}
-                               <li>{{objs.discuss}}</li>
+                               <p>{{user.username}}: {{objs.discuss}}</p>
                                <br>
                             {% endif %}
                             {%endfor%}
