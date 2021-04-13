@@ -13,7 +13,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name='forum',
-            name='link',
         ),
         migrations.AlterField(
             model_name='forum',
