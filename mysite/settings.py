@@ -151,6 +151,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
+MEDIA_URL = 'media/'
+VENV_PATH = os.path.dirname(BASE_DIR)
+MEDIA_ROOT = os.path.join(VENV_PATH, 'project-b-26/media_root')
+
 LOGIN_REDIRECT_URL = '/open_now/home'
 LOGOUT_REDIRECT_URL = '/open_now/home'
 #
@@ -166,3 +170,5 @@ except ImportError:
 # =======
 #django_heroku.settings(locals(), test_runner=False)
 # >>>>>>> f149f427bed413dfb2a92ebcd9a7277b65ea0550
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
