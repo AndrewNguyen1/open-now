@@ -95,10 +95,11 @@
 <main class="container" style="padding-top:5rem">
 
     <div class="starter-template text-center py-5 px-3">
-        <h1>{% block top-header %}{% endblock top-header %}</h1>
-        <p class="lead">{% block p-lead %} {% endblock p-lead %}</p> {# side note: you can just use "endblock" without adding the block name, it's just there for readibility #}
+        <h1>{% block top-header %}The header text goes here.{% endblock top-header %}</h1>
+        <p class="lead">{% block p-lead %}The leading paragraph text goes here.{% endblock p-lead %}</p> {# side note: you can just use "endblock" without adding the block name, it's just there for readibility #}
 
         {% block content %}
+        Your content goes here.
         {% endblock content %}
     </div>
 
