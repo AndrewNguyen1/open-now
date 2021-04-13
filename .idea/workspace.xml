@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5c069526-2b83-4280-b947-ca93bcb143d1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/open_now/static/css/cover.css" beforeDir="false" afterPath="$PROJECT_DIR$/open_now/static/css/cover.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/open_now/templates/open_now/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/open_now/templates/open_now/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +124,14 @@
       <option name="presentableId" value="Default" />
       <updated>1615486540502</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fixed login landing page not loading background by adding new jpg file">
+      <created>1618304305954</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1618304305954</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -148,6 +156,10 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed login landing page not loading background by adding new jpg file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed login landing page not loading background by adding new jpg file" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/manage.py">
