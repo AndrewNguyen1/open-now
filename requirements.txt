@@ -16,3 +16,4 @@ requests
 requests-oauthlib
 urllib3
 whitenoise
+pillow
