@@ -15,6 +15,7 @@ class Business(models.Model):
 	description = models.CharField(max_length=200)
 	website = models.CharField(max_length=50)
 	phone_number = models.CharField(max_length=10)
+	business_image = models.ImageField(upload_to = 'media/', blank = True, null = True)
 
 	class BusinessCategory(models.TextChoices):
 		RESTAURANT = 'REST', _('Restaurant')

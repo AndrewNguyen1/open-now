@@ -8,7 +8,7 @@ from .models import Business, Forum, Discussion
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import * 
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 
 from django.views import generic
@@ -61,8 +61,9 @@ def get_business(request):
     phone_number = request.POST['phone_number']
     website = request.POST['website']
     business_category = request.POST['business_category']
+    business_image = request.POST['business_image']
     t = Business(business_name=business_name,description=description, phone_number = phone_number, website = website,
-                 business_category = business_category)
+                 business_category = business_category, business_image = business_image)
     t.save()
     return HttpResponseRedirect(reverse('open_now:business_list'))
 
@@ -103,3 +104,14 @@ def forums(request):
             'count':count,
             'discussions':discussions}
     return render(request,'open_now/forums.html',context)
+
+def create_businessimage(request):
+    form = BusinessImageForm()
+    if request.method == 'POST':
+        form = BusinessImageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/open_now/business-form')
+
+    context = { 'form':form }
+    return render(request,'open_now/business-form/create-businessimage.html',context)
