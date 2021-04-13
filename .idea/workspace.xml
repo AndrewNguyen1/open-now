@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c069526-2b83-4280-b947-ca93bcb143d1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618306360437</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added crispy_forms to settings.py">
+      <created>1618306516794</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1618306516794</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -198,7 +204,8 @@
     <MESSAGE value="Fixed navbar by adding &quot;d-flex&quot; class to search" />
     <MESSAGE value="Changed &quot;signed in as guest&quot; to &quot;not signed in&quot;" />
     <MESSAGE value="Started framework for template inheritance and navbar improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started framework for template inheritance and navbar improvements" />
+    <MESSAGE value="added crispy_forms to settings.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="added crispy_forms to settings.py" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/manage.py">

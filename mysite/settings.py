@@ -159,6 +159,8 @@ MEDIA_ROOT = os.path.join(VENV_PATH, 'project-b-26/media_root')
 
 LOGIN_REDIRECT_URL = '/open_now/home'
 LOGOUT_REDIRECT_URL = '/open_now/home'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #
 # <<<<<<< HEAD
 #Activate Django-Heroku.
