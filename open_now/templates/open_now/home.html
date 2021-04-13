@@ -1,5 +1,5 @@
-
 <!doctype html>
+{% extends "open_now/base.html" %}
 {% load socialaccount %}
 {% load static %}
 <html lang="en">
@@ -40,54 +40,6 @@
     <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
 </head>
 <body>
-
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">OpenNow</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'open_now:home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'open_now:business_list' %}">Businesses</a>
-                </li>
-                                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'open_now:business_form' %}">Submit a Business</a>
-                </li>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{% url 'open_now:forums' %}">Forums</a>
-            </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                        {% if user.is_authenticated %}
-                        <h6 class="dropdown-header">Signed in as <strong>{{user.username}}</strong></h6>
-                        {% else %}
-                        <h6 class="dropdown-header">Not signed in</h6>
-                        {% endif %}
-                        <div class="dropdown-divider"></div>
-                        <li><a class="dropdown-item" href="{% url 'open_now:login' %}">Login</a></li>
-                        <!-- ADD TEMPORARY LOGOUT FUNCTIONALITY HERE -->
-                        <li><a class="dropdown-item" href="{% url 'open_now:login' %}">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-                <form action="{% url 'open_now:search_result' %}" method="get" class="d-flex">
-                    <input class="form-control me-2" name="query" type="search" placeholder="Search businesses" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-        </div>
-    </div>
-</nav>
 
 <main class="container" style="padding-top:5rem">
 
