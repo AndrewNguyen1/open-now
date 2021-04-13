@@ -95,19 +95,11 @@
 <main class="container" style="padding-top:5rem">
 
     <div class="starter-template text-center py-5 px-3">
-        <h1>You've reached the OpenNow homepage.</h1>
-        <p class="lead">This site is still in development.<strong> Check back later to explore local businesses.</strong><br>Verify that the account information below, if shown, is correct.</p>
+        <h1>{% block top-header %}{% endblock top-header %}</h1>
+        <p class="lead">{% block p-lead %} {% endblock p-lead %}</p> {# side note: you can just use "endblock" without adding the block name, it's just there for readibility #}
 
-        {% if user.is_authenticated %}
-        <div class="alert alert-success" role="alert">
-            If you are seeing this, your Google Account is authenticated as <strong>{{user.username}}</strong>!
-        </div>
-
-        {% else %}
-        <div class="alert alert-info" role="alert">
-            If you are seeing this, your Google Account is not authenticated, and you are viewing this site as a <strong>guest</strong>.
-        </div>
-        {% endif %}
+        {% block content %}
+        {% endblock content %}
     </div>
 
 </main><!-- /.container -->
