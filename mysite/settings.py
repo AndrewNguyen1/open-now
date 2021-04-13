@@ -166,5 +166,3 @@ except ImportError:
 # =======
 #django_heroku.settings(locals(), test_runner=False)
 # >>>>>>> f149f427bed413dfb2a92ebcd9a7277b65ea0550
-
-DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
