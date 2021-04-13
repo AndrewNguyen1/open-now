@@ -103,3 +103,23 @@ def forums(request):
             'count':count,
             'discussions':discussions}
     return render(request,'open_now/forums.html',context)
+
+
+def business_specs(request, business_name):
+    business = Business.objects.get(business_name__startswith=business_name)
+
+    context = {'business': business, 'reviews': business.review_set.all()}
+
+    return render(request, 'open_now/business_specs.html', context)
+
+def get_review(request):
+
+    business_name = request.POST['business_name']
+    b = Business.objects.get(business_name__startswith=business_name)
+
+    review_text = request.POST['review_text']
+    rating = request.POST['rating']
+    b.review_set.create(review_text = review_text, rating = rating)
+
+    return HttpResponseRedirect(reverse('open_now:business_list'))
+
