@@ -1,5 +1,5 @@
 {% extends "open_now/base.html" %}
-
+{% load static %}
 {% block page-title %}Businesses - OpenNow{% endblock page-title %}
 
 {% block top-header %}
@@ -72,10 +72,16 @@
 {% endblock upper-body %}
 
 {% block body %}
+{% if business_list %}
+{% else %}
+<div class="alert alert-warning text-center" role="alert">
+    <strong>Oops!</strong> No businesses are available at this time. Be the first to <a href="{% url 'open_now:business_form' %}" class="alert-link">submit a new business</a>!
+</div>
+{% endif %}
 <div class="card mb-3" style="max-width: 540px;">
     <div class="row no-gutters">
         <div class="col-md-4">
-            <img src="..." class="card-img" alt="...">
+            <img src="{% static "css/restaurant-default2.jpg" %}" class="card-img" alt="...">
         </div>
         <div class="col-md-8">
             <div class="card-body">
