@@ -12,7 +12,7 @@ Homepage - OpenNow
     This site is still in development.<strong> Check back later to explore local businesses.</strong><br>Verify that the account information below, if shown, is correct.
 {% endblock p-lead %}
 
-{% block content %}
+{% block upper-body %}
     {% if user.is_authenticated %}
     <div class="alert alert-success" role="alert">
         If you are seeing this, your Google Account is authenticated as <strong>{{user.username}}</strong>!
@@ -23,4 +23,4 @@ Homepage - OpenNow
         If you are seeing this, your Google Account is not authenticated, and you are viewing this site as a <strong>guest</strong>.
     </div>
     {% endif %}
-{% endblock content %}
+{% endblock upper-body %}

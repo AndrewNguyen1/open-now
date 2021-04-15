@@ -99,9 +99,13 @@
         <h1>{% block top-header %}The header text goes here.{% endblock top-header %}</h1>
         <p class="lead">{% block p-lead %}The leading paragraph text goes here.{% endblock p-lead %}</p> {# side note: you can just use "endblock" without adding the block name, it's just there for readibility #}
 
-        {% block content %}
+        {% block upper-body %}
         Your content goes here.
-        {% endblock content %}
+        {% endblock upper-body %}
+    </div>
+    <div class="starter-template text-left py-4 px-3">
+        {% block body %}
+        {% endblock body %}
     </div>
 
 </main><!-- /.container -->
