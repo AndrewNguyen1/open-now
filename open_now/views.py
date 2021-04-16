@@ -9,8 +9,7 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import * 
 from django.shortcuts import redirect, render
-
-
+from django.views.generic import CreateView
 from django.views import generic
 
 from .models import Login
@@ -46,9 +45,10 @@ class BusinessView(generic.ListView):
         return Business.objects.all()
         return
 
-class BusinessFormView(generic.ListView):
+class BusinessFormView(generic.CreateView):
+    model = Business
     template_name = 'open_now/business_form.html'
-
+    fields = ('business_name','description','website','phone_number','business_category')
     def get_queryset(self):
         """
         """
@@ -115,3 +115,15 @@ def create_businessimage(request):
 
     context = { 'form':form }
     return render(request,'open_now/business-form/create-businessimage.html',context)
+
+"""def createNewBusiness(request):
+    form = CreateBusinessForm()
+    if request.method == 'POST':
+        form = CreateBusinessForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/open_now/business-form')
+    else:
+        form = CreateBusinessForm()
+    context={'form':form}
+    return render(request, 'open_now/business_form.html',context)"""

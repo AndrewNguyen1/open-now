@@ -14,7 +14,7 @@ Submit a Business{% endblock top-header %}
 {% block upper-body %}
 <form method="post">
     {% csrf_token %}
-    <table>{{ form.as_table }}</table>
+    {{form}}
     <button type="submit">Submit Business</button>
 </form>
 {% endblock upper-body %}
