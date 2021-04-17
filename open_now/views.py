@@ -62,7 +62,7 @@ def get_business(request):
     website = request.POST['website']
     business_category = request.POST['business_category']
     t = Business(business_name=business_name,description=description, phone_number = phone_number, website = website,
-                 business_category = business_category)
+                 business_category = business_category, business_hours=business_hours)
     t.save()
     return HttpResponseRedirect(reverse('open_now:business_list'))
 
@@ -122,4 +122,29 @@ def get_review(request):
     b.review_set.create(review_text = review_text, rating = rating)
 
     return HttpResponseRedirect(reverse('open_now:business_list'))
+
+def get_hours(request):
+
+    store = request.POST['business_name']
+
+    form = CreateInDiscussion()
+    if request.method == 'POST':
+        form = CreateInHours(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('open_now/business_list/')
+    context ={'form':form}
+    return render(request,'open_now/business_list.html',context)
+    
+
+
+# def add_hours(request):
+#     form = CreateInHours()
+#     if request.method == 'POST':
+#         form = CreateInHours(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('open_now/business_specs.html')
+#     context ={'form':form}
+#     return render(request,'open_now/business_specs.html',context)
 

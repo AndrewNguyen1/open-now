@@ -8,6 +8,18 @@ class Login(models.Model):
 	def __str__(self):
 		return self.text
 
+HOUR_OF_DAY_24 = [(i,i) for i in range(1,25)]
+
+WEEKDAYS = [
+  (1, _("Monday")),
+  (2, _("Tuesday")),
+  (3, _("Wednesday")),
+  (4, _("Thursday")),
+  (5, _("Friday")),
+  (6, _("Saturday")),
+  (7, _("Sunday")),
+]
+
 
 class Business(models.Model):
 
@@ -28,9 +40,34 @@ class Business(models.Model):
 		default=BusinessCategory.OTHER,
 	)
 
+
 	def __str__(self):
 		return self.business_name
 
+HOUR_OF_DAY_24 = [(i,i) for i in range(1,25)]
+
+WEEKDAYS = [
+  (1, _("Monday")),
+  (2, _("Tuesday")),
+  (3, _("Wednesday")),
+  (4, _("Thursday")),
+  (5, _("Friday")),
+  (6, _("Saturday")),
+  (7, _("Sunday")),
+]
+
+class OpeningHours(models.Model):
+    store = models.ForeignKey(Business, on_delete=models.CASCADE)
+    weekday_from = models.PositiveSmallIntegerField(choices=WEEKDAYS, unique=True)
+    weekday_to = models.PositiveSmallIntegerField(choices=WEEKDAYS)
+    from_hour = models.PositiveSmallIntegerField(choices=HOUR_OF_DAY_24)
+    to_hour = models.PositiveSmallIntegerField(choices=HOUR_OF_DAY_24)
+
+    def get_weekday_from_display(self):
+        return WEEKDAYS[self.weekday_from]
+
+    def get_weekday_to_display(self):
+        return WEEKDAYS[self.weekday_to]
 
 class Forum(models.Model):
     name=models.CharField(max_length=200)
@@ -68,4 +105,7 @@ class Review(models.Model):
 	def __str__(self):
 		return str(self.rating)
 
+
+
+	
 

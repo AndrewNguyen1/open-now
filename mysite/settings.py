@@ -153,16 +153,11 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 LOGIN_REDIRECT_URL = '/open_now/home'
 LOGOUT_REDIRECT_URL = '/open_now/home'
-#
-# <<<<<<< HEAD
-#Activate Django-Heroku.
+
 try:
     import django_heroku
     django_heroku.settings(locals(), test_runner=False)
 except ImportError:
     found = False
 
-# #
-# =======
-#django_heroku.settings(locals(), test_runner=False)
-# >>>>>>> f149f427bed413dfb2a92ebcd9a7277b65ea0550
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
