@@ -123,21 +123,29 @@ class Location(models.Model):
 
 
 class Search(models.Model):
+	CATEGORIES = (
+		('REST','Restaurant'),
+		('SHOP','Retail'),
+		('GYM','Gym or Workout'),
+		('NONE','Other or Unspecified')
+	)
 
 	search_name = models.CharField(max_length=50)
 	radius = models.IntegerField()
 
-	class SearchCategory(models.TextChoices):
+	"""class SearchCategory(models.TextChoices):
 		RESTAURANT = 'REST', _('Restaurant')
 		RETAIL = 'SHOP', _('Retail')
 		GYM = 'GYM', _('Gym or Workout')
-		OTHER = 'NONE', _('Other or Unspecified')
+		OTHER = 'NONE', _('Other or Unspecified')"""
 
-	search_category = models.CharField(
+	"""search_category = models.CharField(
 		max_length = 4,
 		choices = SearchCategory.choices,
 		default = SearchCategory.OTHER,
-	)
+	)"""
+
+	search_category = models.CharField(max_length=4,choices=CATEGORIES,default=('NONE','Other or Unspecified'))
 
 	def __str__(self):
 		return f"{self.business_name} - {self.radius} km"

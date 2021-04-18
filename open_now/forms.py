@@ -19,4 +19,4 @@ class LocationForm(ModelForm):
 class SearchForm(ModelForm):
 	class Meta:
 		model = Search
-		fields = ['search_name', 'radius']
+		fields = ['search_name', 'radius', 'search_category']
