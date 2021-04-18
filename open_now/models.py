@@ -51,10 +51,70 @@ class Discussion(models.Model):
 
 
 class Location(models.Model):
+	# from https://gist.github.com/sandes/ca4405b996227e49ca00b3f052975347
+	US_STATES = (
+		('AL','Alabama'),
+		('AK','Alaska'),
+		('AS','American Samoa'),
+		('AZ','Arizona'),
+		('AR','Arkansas'),
+		('CA','California'),
+		('CO','Colorado'),
+		('CT','Connecticut'),
+		('DE','Delaware'),
+		('DC','District of Columbia'),
+		('FL','Florida'),
+		('GA','Georgia'),
+		('GU','Guam'),
+		('HI','Hawaii'),
+		('ID','Idaho'),
+		('IL','Illinois'),
+		('IN','Indiana'),
+		('IA','Iowa'),
+		('KS','Kansas'),
+		('KY','Kentucky'),
+		('LA','Louisiana'),
+		('ME','Maine'),
+		('MD','Maryland'),
+		('MA','Massachusetts'),
+		('MI','Michigan'),
+		('MN','Minnesota'),
+		('MS','Mississippi'),
+		('MO','Missouri'),
+		('MT','Montana'),
+		('NE','Nebraska'),
+		('NV','Nevada'),
+		('NH','New Hampshire'),
+		('NJ','New Jersey'),
+		('NM','New Mexico'),
+		('NY','New York'),
+		('NC','North Carolina'),
+		('ND','North Dakota'),
+		('MP','Northern Mariana Islands'),
+		('OH','Ohio'),
+		('OK','Oklahoma'),
+		('OR','Oregon'),
+		('PA','Pennsylvania'),
+		('PR','Puerto Rico'),
+		('RI','Rhode Island'),
+		('SC','South Carolina'),
+		('SD','South Dakota'),
+		('TN','Tennessee'),
+		('TX','Texas'),
+		('UT','Utah'),
+		('VT','Vermont'),
+		('VI','Virgin Islands'),
+		('VA','Virginia'),
+		('WA','Washington'),
+		('WV','West Virginia'),
+		('WI','Wisconsin'),
+		('WY','Wyoming')
+	)
+
 	street_address = models.CharField(max_length=200)
 	alt_info = models.CharField(max_length=100, null=True, blank=True)
 	city = models.CharField(max_length=50)
-	state = models.CharField(max_length=50)
+	state = models.CharField(max_length=2,choices=US_STATES)
 	postal_code = models.IntegerField()
 
 	def __str__(self):

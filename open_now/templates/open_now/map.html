@@ -108,11 +108,19 @@ map
 </div>
 
 {{ map|safe }}
+    <p>test text 2</p>
 
-<form method="POST">
+<form method="POST" class="w-100">
     {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" class="btn btn-success" value="Submit">
+    <div class="form-row">
+        <div class="form-group col-md-10 mb-0">
+            {{form.search_name | as_crispy_field}}
+        </div>
+        <div class="form-group col-md-2 mb-0">
+            {{form.radius | as_crispy_field}}
+        </div>
+    </div>
+    <input type="submit" class="btn btn-success" value="Search">
 </form>
 </main>
 

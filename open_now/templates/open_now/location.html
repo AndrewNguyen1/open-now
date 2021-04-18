@@ -115,14 +115,6 @@ current address
 <p>test text</p>
 <font size="+3">Enter your current address:</font>
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{form | crispy}}
-
-    </table>
-    <input type="submit" class="btn btn-success" value="Submit">
-</form>
 <form method="POST" class="w-100">
     {% csrf_token %}
     {{form.street_address | as_crispy_field}}
