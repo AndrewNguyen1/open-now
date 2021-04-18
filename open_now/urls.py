@@ -15,7 +15,8 @@ urlpatterns = [
     path('new-discussion/', views.new_discussion, name='new_discussion'),
     path('forums/', views.forums, name='forums'),
     path('businesses/<str:business_name>/', views.business_specs, name='business_specs'),
-    path('new-review/', views.get_review, name='new_review')
+    path('new-review/', views.get_review, name='new_review'),
+    path('update-hours/', views.get_hours, name='update_hours')
 
 
 ]

@@ -108,7 +108,7 @@ def forums(request):
 def business_specs(request, business_name):
     business = Business.objects.get(business_name__startswith=business_name)
 
-    context = {'business': business, 'reviews': business.review_set.all()}
+    context = {'business': business, 'reviews': business.review_set.all(), 'hours': business.openinghours_set.all()}
 
     return render(request, 'open_now/business_specs.html', context)
 
@@ -125,26 +125,18 @@ def get_review(request):
 
 def get_hours(request):
 
-    store = request.POST['business_name']
+    business_name = request.POST['store']
+    b = Business.objects.get(business_name__startswith=business_name)
 
-    form = CreateInDiscussion()
-    if request.method == 'POST':
-        form = CreateInHours(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('open_now/business_list/')
-    context ={'form':form}
-    return render(request,'open_now/business_list.html',context)
-    
+    weekday_from = request.POST['weekday_from']
+    weekday_to = request.POST['weekday_to']
+    from_hour = request.POST['from_hour']
+    to_hour = request.POST['to_hour']
 
 
-# def add_hours(request):
-#     form = CreateInHours()
-#     if request.method == 'POST':
-#         form = CreateInHours(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('open_now/business_specs.html')
-#     context ={'form':form}
-#     return render(request,'open_now/business_specs.html',context)
+    b.openinghours_set.create(weekday_from = weekday_from, weekday_to = weekday_to, from_hour = from_hour,
+                              to_hour = to_hour)
+
+    return HttpResponseRedirect(reverse('open_now:business_list'))
+
 
