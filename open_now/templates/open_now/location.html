@@ -112,12 +112,32 @@ current address
 
 {{ map|safe }}
 
-
-<font size="+3">Enter your current address</font>
+<p>test text</p>
+<font size="+3">Enter your current address:</font>
 
 <form method="POST">
     {% csrf_token %}
-    {{form.as_p}}
+    <table>
+        {{form | crispy}}
+
+    </table>
+    <input type="submit" class="btn btn-success" value="Submit">
+</form>
+<form method="POST" class="w-100">
+    {% csrf_token %}
+    {{form.street_address | as_crispy_field}}
+    {{form.alt_info | as_crispy_field}}
+    <div class="form-row">
+        <div class="form-group col-md-6 mb-0">
+            {{form.city | as_crispy_field}}
+        </div>
+        <div class="form-group col-md-4 mb-0">
+            {{form.state | as_crispy_field}}
+        </div>
+        <div class="form-group col-md-2 mb-0">
+            {{form.postal_code | as_crispy_field}}
+        </div>
+    </div>
     <input type="submit" class="btn btn-success" value="Submit">
 </form>
 </main>
