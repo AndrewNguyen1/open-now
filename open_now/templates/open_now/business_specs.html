@@ -97,7 +97,9 @@
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="..." alt="Card image cap">
   <div class="card-body">
+    <div class="card-header">
     <h5 class="card-title">{{business.business_name}}</h5>
+    </div>
     <p class="card-text">{{business.description}}</p>
   </div>
   <ul class="list-group list-group-flush">
@@ -109,7 +111,13 @@
 
   </div>
 </div>
+
+<!-- hours card -->
+<div class="card">
+    <div class="card-header">
         <h2>Do you have additional info about their hours? Help us update them!</h2>
+    </div>
+    <div class="card-body">
          <form action="/open_now/update-hours/" method="POST">
     {% csrf_token %}
 <div class="form-group-row">
@@ -209,19 +217,26 @@
 </form>
     <h2>Hours:</h2>
          {% if hours %}
-{% for h in hours %}
-        {{h.get_weekday_from_display}} - {{h.get_weekday_to_display}}
-        {{h.get_from_hour_display}} - {{h.get_to_hour_display}}
 
-{%endfor%}
+         {{hours.get_weekday_from_display}} - {{hours.get_weekday_to_display}}
+         {{hours.get_from_hour_display}} - {{hours.get_to_hour_display}}
+
         {% else %}
     <p>No hours are available yet.</p>
 
 
         {%endif%}
+    </div>
+    </div>
+    <!-- end hours card -->
+    <br>
+    <!-- review card -->
+    <div class="card">
 
-    
+    <div class="card-header">
     <h2>Reviews:</h2>
+    </div>
+    <div class="card-body">
         {% if reviews %}
     {% for r in reviews %}
 
@@ -243,6 +258,15 @@
 
 {% endif %}
 
+</div>
+<!-- end review card -->
+<br>
+<!-- submit review card -->
+<div class="card">
+
+    <div class="card-header">
+    <h2>Submit a Review:</h2>
+    </div>
 
          <form action="/open_now/new-review/" method="POST">
     {% csrf_token %}
@@ -251,7 +275,7 @@
   <input type="text" class="form-control" id="review_text" name="review_text"><br>
  <input type="hidden" class="form-control" id="business_name" name="business_name" value={{business.business_name}}><br>
 
-<label for="rating">How would you rate it?</label>
+<label for="rating">How would you rate {{business.business_name}}?</label>
   <select id="rating" name="rating">
     <option value=1>1</option>
     <option value=2>2</option>
@@ -267,10 +291,13 @@
 
 </form>
 
-
+</div>
+</div>
+<!-- end submit review card -->
 
 
     </div>
+
 </main><!-- /.container -->
 
 

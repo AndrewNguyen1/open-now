@@ -108,7 +108,7 @@ def forums(request):
 def business_specs(request, business_name):
     business = Business.objects.get(business_name__startswith=business_name)
 
-    context = {'business': business, 'reviews': business.review_set.all(), 'hours': business.openinghours_set.all()}
+    context = {'business': business, 'reviews': business.review_set.all(), 'hours': business.openinghours_set.last()}
 
     return render(request, 'open_now/business_specs.html', context)
 
