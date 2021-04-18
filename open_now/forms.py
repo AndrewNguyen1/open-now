@@ -9,10 +9,10 @@ class CreateInForum(ModelForm):
 class CreateInDiscussion(ModelForm):
     class Meta:
         model= Discussion
-        fields = "__all__"
+        fields = ['discuss']
 
 class CreateInHours(ModelForm):
     class Meta:
         model= OpeningHours
         fields = ["weekday_from", "weekday_to", "from_hour", "to_hour"]
-        fields = ['discuss']
+        
