@@ -83,7 +83,7 @@ def new_forum(request):
     return render(request,'open_now/new_forum.html',context)
 
 def discuss(request, pk):
-    discussion = Discussion.objects.get(id=pk)
+    discussion = Forum.objects.get(id=pk)
 
     context = {'f': discussion}
 
@@ -95,7 +95,8 @@ def new_discussion(request):
     forum_topic = request.POST['forum']
     forum = Forum.objects.get(id=forum_topic)
     newDiscuss = Discussion(forum=forum ,discuss=discuss)
-    return render(request,'open_now/forums.html')
+    newDiscuss.save()
+    return HttpResponseRedirect(reverse('open_now:forums'))
 
 def forums(request):
     all_forums=Forum.objects.all()
