@@ -92,8 +92,8 @@ def discuss(request, pk):
 def new_discussion(request):
 
     discuss = request.POST['discuss']
-    forum = request.POST['forum']
-
+    forum_topic = request.POST['forum']
+    forum = Forum.objects.get(id=forum_topic)
     newDiscuss = Discussion(forum=forum ,discuss=discuss)
     return render(request,'open_now/forums.html')
 

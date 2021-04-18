@@ -102,7 +102,7 @@
 </div>
 <form action="{% url 'open_now:new_discussion'%}" method="POST">
     {% csrf_token %}
-    <input type="hidden" class="form-control" id="forum" name="forum" value={{f.topic}}>
+    <input type="hidden" class="form-control" id="forum" name="forum" value={{f.id}}>
     <h5>Forum: </h5> {{f.topic}}
     <input type="text" class="form-control" id="discuss" name="discuss"><br>
     <input type="submit" class="btn btn-success" value="Submit">
