@@ -81,16 +81,22 @@ def new_forum(request):
             return redirect('/open_now/forums')
     context ={'form':form}
     return render(request,'open_now/new_forum.html',context)
+
+def discuss(request, pk):
+    discussion = Forum.objects.get(id=pk)
+
+    context = {'f': discussion}
+
+    return render(request, 'open_now/new_discussion.html', context)
  
 def new_discussion(request):
-    form = CreateInDiscussion()
-    if request.method == 'POST':
-        form = CreateInDiscussion(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/open_now/forums')
-    context ={'form':form}
-    return render(request,'open_now/new_discussion.html',context)
+
+    discuss = request.POST['discuss']
+    forum_topic = request.POST['forum']
+    forum = Forum.objects.get(id=forum_topic)
+    newDiscuss = Discussion(forum=forum ,discuss=discuss)
+    newDiscuss.save()
+    return HttpResponseRedirect(reverse('open_now:forums'))
 
 def forums(request):
     all_forums=Forum.objects.all()

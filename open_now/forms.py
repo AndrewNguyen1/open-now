@@ -15,3 +15,4 @@ class CreateInHours(ModelForm):
     class Meta:
         model= OpeningHours
         fields = ["weekday_from", "weekday_to", "from_hour", "to_hour"]
+        fields = ['discuss']
