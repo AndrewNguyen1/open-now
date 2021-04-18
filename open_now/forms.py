@@ -9,4 +9,4 @@ class CreateInForum(ModelForm):
 class CreateInDiscussion(ModelForm):
     class Meta:
         model= Discussion
-        fields = "__all__"
+        fields = ['discuss']
