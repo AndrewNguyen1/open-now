@@ -110,12 +110,6 @@ map
 {{ map|safe }}
     <p>test text 2</p>
 
-    <form method="POST" class="w-100">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" class="btn btn-success" value="Search">
-    </form>
-
 <form method="POST" class="w-100">
     {% csrf_token %}
     {{form.search_name | as_crispy_field}}
