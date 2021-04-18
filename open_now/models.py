@@ -58,16 +58,38 @@ WEEKDAYS = [
 
 class OpeningHours(models.Model):
     store = models.ForeignKey(Business, on_delete=models.CASCADE)
-    weekday_from = models.PositiveSmallIntegerField(choices=WEEKDAYS, unique=True)
+    weekday_from = models.PositiveSmallIntegerField(choices=WEEKDAYS)
     weekday_to = models.PositiveSmallIntegerField(choices=WEEKDAYS)
     from_hour = models.PositiveSmallIntegerField(choices=HOUR_OF_DAY_24)
     to_hour = models.PositiveSmallIntegerField(choices=HOUR_OF_DAY_24)
 
     def get_weekday_from_display(self):
-        return WEEKDAYS[self.weekday_from]
+        return WEEKDAYS[self.weekday_from - 1][1]
 
     def get_weekday_to_display(self):
-        return WEEKDAYS[self.weekday_to]
+        return WEEKDAYS[self.weekday_to - 1][1]
+
+    def get_from_hour_display(self):
+        hour = HOUR_OF_DAY_24[self.from_hour - 1][1]
+
+        if hour < 12:
+            return str(hour) + ":00 am"
+        if hour == 12:
+            return str(hour) + ":00 pm"
+        else:
+            return str(hour - 12) + ":00 pm"
+
+    def get_to_hour_display(self):
+        hour = HOUR_OF_DAY_24[self.to_hour - 1][1]
+        if hour < 12:
+            return str(hour) + ":00 am"
+        if hour == 12:
+            return str(hour) + ":00 pm"
+        else:
+            return str(hour - 12) + ":00 pm"
+
+    def __str__(self):
+        return str(self.store) + " Hours"
 
 class Forum(models.Model):
     name=models.CharField(max_length=200)
