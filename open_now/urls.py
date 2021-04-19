@@ -13,19 +13,13 @@ urlpatterns = [
     path('search/', views.search_business, name='search_result'),
     path('new-forum/', views.new_forum, name='new_forum'),
     path('new-discussion/', views.new_discussion, name='new_discussion'),
-<<<<<<< Updated upstream
     path('forums/', views.forums, name='forums'),
-    # path('map/', calculate_distance_view, name='calculate-view'),
-    path('map/test/', views.location_view, name='location-view'),
-    path('map/display/', views.map_view, name='map-view'),
-=======
     path('businesses/<str:business_name>/', views.business_specs, name='business_specs'),
     path('new-review/', views.get_review, name='new_review'),
     path('update-hours/', views.get_hours, name='update_hours'),
     path('map/', views.location_view, name='map'),
     path('map/display/', views.map_view, name='map-view'),
 
->>>>>>> Stashed changes
 
 ]
 
