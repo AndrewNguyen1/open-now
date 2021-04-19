@@ -146,6 +146,7 @@ USE_TZ = True
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)

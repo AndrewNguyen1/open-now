@@ -25,4 +25,3 @@ class SearchForm(ModelForm):
 	class Meta:
 		model = Search
 		fields = ['search_category', 'radius']
-

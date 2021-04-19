@@ -17,6 +17,7 @@ from geopy.distance import geodesic
 from .utils import *
 import folium
 
+from .models import Login
 
 
 GOOGLE_API_KEY = 'AIzaSyCU9tondG6nw0-PcEmHfpPVJVrOsiWlo4w'
@@ -215,41 +216,13 @@ def map_view(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
-
             search_category = form.cleaned_data.get('search_category')
             radius = form.cleaned_data.get('radius')
             
         # perform the search based on a keywork ex: "Mexican Food" or "Bagels"
         # radius is in meters
-        results = client.search(keyword=search_name, radius=radius*1000, location=address_or_postal_code)
-
-        # print(results['results'][0]['vicinity'])
-
-        max_distance = 0
-
-        # mark every result on the map
-        for i in range(len(results)):
-
-            name = results['results'][i]['name'] 
-            lat_result = results['results'][i]['geometry']['location']['lat']
-            lng_result = results['results'][i]['geometry']['location']['lng']
-            rough_address = results['results'][i]['vicinity']
-            pointB = (lat_result, lng_result)
-
-            distance = round(geodesic(pointA, pointB).km, 2)
-            if distance > max_distance:
-                max_distance = distance
-
-            folium.Marker([lat_result, lng_result], tooltip=rough_address, popup=name, zoom_start=radius+6).add_to(m)
-
-
-
-    
 
         # results = client.search(keyword=search_category, radius=radius*1000, location=address_or_postal_code)
-
-
-
 
         # get all the businesses that have been submitted and perform a search using the google maps API
         businesses = Business.objects.all()
@@ -300,8 +273,6 @@ def map_view(request):
 
                 # popup = folium.Popup('<a href=" [URL GOES HERE] \"target=\"_blank\"> [text for link goes here]\" </a>')
 
-
-
     m = m._repr_html_()
 
  
@@ -311,3 +282,4 @@ def map_view(request):
     }
 
     return render(request, 'open_now/map.html', context)
+
