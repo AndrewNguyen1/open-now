@@ -146,7 +146,10 @@ USE_TZ = True
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
+<<<<<<< Updated upstream
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+=======
+>>>>>>> Stashed changes
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

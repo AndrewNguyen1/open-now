@@ -69,6 +69,12 @@ map
                     <a class="nav-link" aria-current="page" href="{% url 'open_now:forums' %}">Forums</a>
                 </li>
                 <li class="nav-item">
+<<<<<<< Updated upstream
+=======
+                    <a class="nav-link" aria-current="page" href="{% url 'open_now:map' %}">Map</a>
+                </li>
+                <li class="nav-item">
+>>>>>>> Stashed changes
                     <a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -109,15 +115,26 @@ map
 
 {{ map|safe }}
 
+<<<<<<< Updated upstream
 <form method="POST" class="w-100">
     {% csrf_token %}
     {{form.search_name | as_crispy_field}}
+=======
+<a href="{% url 'open_now:map' %}" class="btn btn-info" role="button">Reset Address</a>
+
+<form method="POST" class="w-100">
+    {% csrf_token %}
+>>>>>>> Stashed changes
     <div class="form-row">
         <div class="form-group col-md-10 mb-0">
             {{form.search_category | as_crispy_field}}
         </div>
         <div class="form-group col-md-2 mb-0">
             {{form.radius | as_crispy_field}}
+<<<<<<< Updated upstream
+=======
+            (in km)
+>>>>>>> Stashed changes
         </div>
     </div>
     <input type="submit" class="btn btn-success" value="Search">
