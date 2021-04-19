@@ -139,7 +139,7 @@ class Search(models.Model):
 		GYM = 'GYM', _('Gym or Workout')
 		OTHER = 'NONE', _('Other or Unspecified')"""
 
-<<<<<<< Updated upstream
+
 	"""search_category = models.CharField(
 		max_length = 4,
 		choices = SearchCategory.choices,
@@ -147,7 +147,7 @@ class Search(models.Model):
 	)"""
 
 	search_category = models.CharField(max_length=4,choices=CATEGORIES,default=('NONE','Other or Unspecified'))
-=======
+
 class Location(models.Model):
   # from https://gist.github.com/sandes/ca4405b996227e49ca00b3f052975347
   US_STATES = (
@@ -247,8 +247,3 @@ class Search(models.Model):
   def __str__(self):
     return f"Search for {self.search_category} within {self.radius} km"
 
-
->>>>>>> Stashed changes
-
-	def __str__(self):
-		return f"{self.business_name} - {self.radius} km"
