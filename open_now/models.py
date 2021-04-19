@@ -49,6 +49,23 @@ class Discussion(models.Model):
     def __str__(self):
         return str(self.forum)
 
+class Review(models.Model):
+
+	business = models.ForeignKey(Business, on_delete=models.CASCADE)
+	review_text = models.CharField(max_length=200)
+
+	class Rating(models.IntegerChoices):
+		(1, 1),
+		(2, 2),
+		(3, 3),
+		(4, 4),
+		(5, 5)
+
+	rating = models.IntegerField(choices=Rating.choices, default=5)
+
+	def __str__(self):
+		return str(self.rating)
+
 
 class Location(models.Model):
 	# from https://gist.github.com/sandes/ca4405b996227e49ca00b3f052975347
