@@ -4,11 +4,7 @@ from django.db import models
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
-<<<<<<< Updated upstream
-from .models import Login, Business, Forum, Discussion, Location, Search
-=======
 from .models import *
->>>>>>> Stashed changes
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import * 
@@ -20,12 +16,11 @@ from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 from .utils import *
 import folium
-<<<<<<< Updated upstream
+
 
 
 GOOGLE_API_KEY = 'AIzaSyCU9tondG6nw0-PcEmHfpPVJVrOsiWlo4w'
-=======
->>>>>>> Stashed changes
+
 
 
 def login(request):
@@ -172,8 +167,7 @@ def map_view(request):
 
     # print(lat, lng)
 
-<<<<<<< Updated upstream
-=======
+
 def location_view(request):
 
     # initial folium map focused on the center of the US
@@ -231,16 +225,11 @@ def map_view(request):
 
     # print(lat, lng)
 
->>>>>>> Stashed changes
     # ---------------------------------------------------------------------------------------- #
     # folium map with current location marked
     m = folium.Map(width=800, height=500, location=get_center_coordinates(lat, lng), zoom_start=17)
 
-<<<<<<< Updated upstream
-    folium.Marker([lat, lng], tooltip=address_or_postal_code, icon=folium.Icon(color='red')).add_to(m)
-=======
     folium.Marker([lat, lng], tooltip=address_or_postal_code, popup='You are here', icon=folium.Icon(color='red')).add_to(m)
->>>>>>> Stashed changes
 
 
     form = SearchForm()
@@ -248,16 +237,12 @@ def map_view(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
-<<<<<<< Updated upstream
-            search_name = form.cleaned_data.get('search_name')
-=======
+
             search_category = form.cleaned_data.get('search_category')
->>>>>>> Stashed changes
             radius = form.cleaned_data.get('radius')
             
         # perform the search based on a keywork ex: "Mexican Food" or "Bagels"
         # radius is in meters
-<<<<<<< Updated upstream
         results = client.search(keyword=search_name, radius=radius*1000, location=address_or_postal_code)
 
         # print(results['results'][0]['vicinity'])
@@ -282,7 +267,7 @@ def map_view(request):
 
 
     
-=======
+
         # results = client.search(keyword=search_category, radius=radius*1000, location=address_or_postal_code)
 
 
@@ -336,7 +321,7 @@ def map_view(request):
                 folium.Marker([lat_f, lng_f], tooltip=rough_address_f, popup=test, zoom_start=radius+3).add_to(m)
 
                 # popup = folium.Popup('<a href=" [URL GOES HERE] \"target=\"_blank\"> [text for link goes here]\" </a>')
->>>>>>> Stashed changes
+
 
 
     m = m._repr_html_()
