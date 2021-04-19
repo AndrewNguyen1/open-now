@@ -11,11 +11,6 @@ class CreateInDiscussion(ModelForm):
         model = Discussion
         fields = "__all__"
 
-class LocationForm(ModelForm):
-	class Meta:
-		model = Location
-		fields = ['street_address', 'alt_info', 'city', 'state', 'postal_code']
-
 class CreateInHours(ModelForm):
     class Meta:
         model= OpeningHours
