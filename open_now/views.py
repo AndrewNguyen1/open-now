@@ -169,63 +169,6 @@ def location_view(request):
 
     return render(request, 'open_now/location.html', context)
 
-def map_view(request):
-
-    locations = Location.objects.all()
-    count = locations.count()
-    lat = None
-    lng = None
-
-    if count > 1:
-        # print("There is more than one current location")
-        pass
-
-    # set the current location to the last location in the database
-    current_location = locations[count-1]
-
-    # get all of the fields
-    street_address = current_location.street_address
-    alt_info = current_location.alt_info
-    city = current_location.city
-    state = current_location.state
-    postal_code = current_location.postal_code
-
-    # create the properly formatted address or postal code
-    # does not factor in alternate info
-    address_or_postal_code = str(street_address) + ', ' + str(city) + ', ' + str(state) + ' ' + str(postal_code)
-
-
-    # get the latitude and longitude for the current location
-    client = GoogleMapsClient(api_key=GOOGLE_API_KEY, address_or_postal_code=address_or_postal_code)
-    lat, lng = client.lat, client.lng
-    pointA = (lat, lng)
-
-    # print(lat, lng)
-
-
-def location_view(request):
-
-    # initial folium map focused on the center of the US
-    m = folium.Map(width=800, height=500, location=get_center_coordinates(40.619290458576074, -95.65487442647927), zoom_start=4)
-    m = m._repr_html_()
-
-
-
-    form = LocationForm()
-    if request.method == 'POST':
-        form = LocationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/open_now/map/display/')
-
-
-    context = {
-        'form': form,
-        'map': m,
-    }
-
-    return render(request, 'open_now/location.html', context)
-
 
 def map_view(request):
 
