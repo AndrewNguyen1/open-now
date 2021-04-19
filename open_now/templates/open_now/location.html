@@ -71,12 +71,9 @@ current address
                     <a class="nav-link" aria-current="page" href="{% url 'open_now:forums' %}">Forums</a>
                 </li>
                 <li class="nav-item">
-<<<<<<< Updated upstream
-=======
                     <a class="nav-link" aria-current="page" href="{% url 'open_now:map' %}">Map</a>
                 </li>
                 <li class="nav-item">
->>>>>>> Stashed changes
                     <a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -118,20 +115,12 @@ current address
 
 {{ map|safe }}
 
-<<<<<<< Updated upstream
-<p>test text</p>
-=======
->>>>>>> Stashed changes
 <font size="+3">Enter your current address:</font>
 
 <form method="POST" class="w-100">
     {% csrf_token %}
     {{form.street_address | as_crispy_field}}
-<<<<<<< Updated upstream
-    {{form.alt_info | as_crispy_field}}
-=======
     {{form.address_2 | as_crispy_field}}
->>>>>>> Stashed changes
     <div class="form-row">
         <div class="form-group col-md-6 mb-0">
             {{form.city | as_crispy_field}}
