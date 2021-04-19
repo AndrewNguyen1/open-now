@@ -212,8 +212,8 @@ class Search(models.Model):
     default = SearchCategory.OTHER,
   )"""
 
-    def __str__(self):
-    	return f"Location is {self.street_address} ({self.alt_info}) {self.city}, {self.state} {self.postal_code}"
+  def __str__(self):
+    return f"Location is {self.street_address} ({self.alt_info}) {self.city}, {self.state} {self.postal_code}"
 
 
 
