@@ -2,10 +2,7 @@
 # from django.contrib.gis.geoip import GeoIP
 import requests
 from urllib.parse import urlencode, urlparse, parse_qsl
-<<<<<<< Updated upstream
-=======
 import math 
->>>>>>> Stashed changes
 
 GOOGLE_API_KEY = 'AIzaSyCU9tondG6nw0-PcEmHfpPVJVrOsiWlo4w'
 
@@ -137,9 +134,6 @@ class GoogleMapsClient(object):
 		if r.status_code not in range(200, 299):
 			return {}
 
-<<<<<<< Updated upstream
-		return r.json()
-=======
 		return r.json()
 
 
@@ -164,4 +158,4 @@ def calculate_distance(start, end):
 	distance = radius_of_earth * c
 
 	return distance
->>>>>>> Stashed changes
+
