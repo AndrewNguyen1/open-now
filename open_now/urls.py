@@ -17,7 +17,9 @@ urlpatterns = [
     path('new-discussion/', views.new_discussion, name='new_discussion'),
     path('businesses/<str:business_name>/', views.business_specs, name='business_specs'),
     path('new-review/', views.get_review, name='new_review'),
-    path('update-hours/', views.get_hours, name='update_hours')
+    path('update-hours/', views.get_hours, name='update_hours'),
+    path('map/', views.location_view, name='map'),
+    path('map/display/', views.map_view, name='map-view'),
 
 
 ]

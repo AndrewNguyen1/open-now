@@ -16,3 +16,12 @@ class CreateInHours(ModelForm):
         model= OpeningHours
         fields = ["weekday_from", "weekday_to", "from_hour", "to_hour"]
         
+class LocationForm(ModelForm):
+	class Meta:
+		model = Location
+		fields = ['street_address', 'address_2', 'city', 'state', 'postal_code']
+
+class SearchForm(ModelForm):
+	class Meta:
+		model = Search
+		fields = ['search_category', 'radius']

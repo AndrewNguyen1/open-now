@@ -1,6 +1,15 @@
-<!doctype html>
+{% extends 'base.html' %}
 {% load socialaccount %}
 {% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+current address
+{% endblock title %}
+
+{% block content %}
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -101,21 +110,39 @@
         }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
-    
 </div>
-<form action="{% url 'open_now:new_discussion'%}" method="POST">
+
+
+{{ map|safe }}
+
+<font size="+3">Enter your current address:</font>
+<form method="POST" class="w-100">
     {% csrf_token %}
-    <input type="hidden" class="form-control" id="forum" name="forum" value={{f.id}}>
-    <h5>Forum: {{f.topic}}</h5> 
-    Discuss:
-    <input type="text" class="form-control" id="discuss" name="discuss"><br>
+    {{form.street_address | as_crispy_field}}
+    {{form.address_2 | as_crispy_field}}
+    <div class="form-row">
+        <div class="form-group col-md-6 mb-0">
+            {{form.city | as_crispy_field}}
+        </div>
+        <div class="form-group col-md-4 mb-0">
+            {{form.state | as_crispy_field}}
+        </div>
+        <div class="form-group col-md-2 mb-0">
+            {{form.postal_code | as_crispy_field}}
+        </div>
+    </div>
     <input type="submit" class="btn btn-success" value="Submit">
-    
 </form>
+
+
 </main>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
   
+
+
 <!-- js bundle script for bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 </html>
+
+{% endblock content %}

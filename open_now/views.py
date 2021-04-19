@@ -12,7 +12,10 @@ from django.shortcuts import redirect
 
 
 from django.views import generic
-
+from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
+from .utils import *
+import folium
 from .models import Login
 
 
@@ -146,3 +149,133 @@ def get_hours(request):
     return HttpResponseRedirect(reverse('open_now:business_list'))
 
 
+def location_view(request):
+
+    # initial folium map focused on the center of the US
+    m = folium.Map(width=800, height=500, location=get_center_coordinates(40.619290458576074, -95.65487442647927), zoom_start=4)
+    m = m._repr_html_()
+
+    form = LocationForm()
+    if request.method == 'POST':
+        form = LocationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/open_now/map/display/')
+
+
+    context = {
+        'form': form,
+        'map': m,
+    }
+    return render(request, 'open_now/location.html', context)
+
+
+def map_view(request):
+
+    locations = Location.objects.all()
+    count = locations.count()
+    lat = None
+    lng = None
+
+    if count > 1:
+        # print("There is more than one current location")
+        pass
+
+    # set the current location to the last location in the database
+    current_location = locations[count-1]
+
+    # get all of the fields
+    street_address = current_location.street_address
+    address_2 = current_location.address_2
+    city = current_location.city
+    state = current_location.state
+    postal_code = current_location.postal_code
+
+    # create the properly formatted address or postal code
+    # does not factor in alternate info
+    address_or_postal_code = str(street_address) + ', ' + str(city) + ', ' + str(state) + ' ' + str(postal_code)
+
+    # get the latitude and longitude for the current location
+    client = GoogleMapsClient(api_key=GOOGLE_API_KEY, address_or_postal_code=address_or_postal_code)
+    lat, lng = client.lat, client.lng
+    pointA = (lat, lng)
+
+    # print(lat, lng)
+
+    # ---------------------------------------------------------------------------------------- #
+    # folium map with current location marked
+    m = folium.Map(width=800, height=500, location=get_center_coordinates(lat, lng), zoom_start=17)
+
+    folium.Marker([lat, lng], tooltip=address_or_postal_code, popup='You are here', icon=folium.Icon(color='red')).add_to(m)
+
+
+    form = SearchForm()
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            search_category = form.cleaned_data.get('search_category')
+            radius = form.cleaned_data.get('radius')
+
+        # perform the search based on a keywork ex: "Mexican Food" or "Bagels"
+        # radius is in meters
+        # results = client.search(keyword=search_category, radius=radius*1000, location=address_or_postal_code)
+
+
+        # get all the businesses that have been submitted and perform a search using the google maps API
+        businesses = Business.objects.all()
+        count = businesses.count()
+
+        for business in businesses:
+
+            # make sure we are searching for the correct type of business
+            if search_category == business.business_category:
+
+                result = client.search(keyword=business.business_name, radius=radius*1000, location=address_or_postal_code)
+
+                min_distance = 1000000
+                index = -1
+                lat_f = -1
+                lng_f = -1
+                rough_address_f = ''
+                name_f = ''
+
+                # for multiple locations of a business, get the closest one
+                for i in range(len(result['results'])):
+
+                    lat_result = result['results'][i]['geometry']['location']['lat']
+                    lng_result = result['results'][i]['geometry']['location']['lng']
+                    rough_address = result['results'][i]['vicinity']
+                    name = result['results'][i]['name'] 
+                    pointB = (lat_result, lng_result)
+
+                    distance_km = calculate_distance(pointA, pointB)
+
+                    if distance_km < min_distance:
+                        min_distance = distance_km
+                        index = i
+                        lat_f = lat_result
+                        lng_f = lng_result
+                        rough_address_f = rough_address
+                        name_f = name
+
+
+                # print(result['results'][index]['name'], end="")
+                # print(" " + result['results'][index]['vicinity'], end="")
+                # print(" --> " +  str(distance_km))
+
+                # mark it on the map
+                link = f"/open_now/businesses/{business.business_name}/"
+                test = folium.Popup('<a href="'+ link +'"target="window">'+ name_f + '</a>')
+                folium.Marker([lat_f, lng_f], tooltip=rough_address_f, popup=test, zoom_start=radius+3).add_to(m)
+
+                # popup = folium.Popup('<a href=" [URL GOES HERE] \"target=\"_blank\"> [text for link goes here]\" </a>')
+
+
+    m = m._repr_html_()
+
+    context = {
+        'form': form,
+        'map': m,
+    }
+    return render(request, 'open_now/map.html', context)
