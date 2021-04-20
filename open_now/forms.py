@@ -1,6 +1,5 @@
 from django.forms import ModelForm
 from .models import *
-from django import forms
  
 class CreateInForum(ModelForm):
     class Meta:
@@ -10,10 +9,19 @@ class CreateInForum(ModelForm):
 class CreateInDiscussion(ModelForm):
     class Meta:
         model= Discussion
-        fields = "__all__"
+        fields = ['discuss']
 
-class BusinessImageForm(ModelForm):
+class CreateInHours(ModelForm):
     class Meta:
-        model = Business
-        fields = ['business_image']
-        widgets = {'business_image': forms.ClearableFileInput(attrs={'class': 'form-control mt-2 mb-4'})}  
+        model= OpeningHours
+        fields = ["weekday_from", "weekday_to", "from_hour", "to_hour"]
+        
+class LocationForm(ModelForm):
+	class Meta:
+		model = Location
+		fields = ['street_address', 'address_2', 'city', 'state', 'postal_code']
+
+class SearchForm(ModelForm):
+	class Meta:
+		model = Search
+		fields = ['search_category', 'radius']

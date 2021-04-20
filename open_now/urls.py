@@ -1,7 +1,5 @@
 from django.urls import path
-from django.contrib import admin
-from django.conf import settings
-from django.conf.urls.static import static
+
 from . import views
 
 app_name = 'open_now'
@@ -14,10 +12,15 @@ urlpatterns = [
     path('new-business/', views.get_business, name='new_business'),
     path('search/', views.search_business, name='search_result'),
     path('new-forum/', views.new_forum, name='new_forum'),
-    path('new-discussion/', views.new_discussion, name='new_discussion'),
     path('forums/', views.forums, name='forums'),
-    path('admin/', admin.site.urls),
-    path('business-form/create-businessimage/', views.create_businessimage, name = 'create_businessimage')
+    path('forums/<int:pk>/', views.discuss, name='discuss'),
+    path('new-discussion/', views.new_discussion, name='new_discussion'),
+    path('businesses/<str:business_name>/', views.business_specs, name='business_specs'),
+    path('new-review/', views.get_review, name='new_review'),
+    path('update-hours/', views.get_hours, name='update_hours'),
+    path('map/', views.location_view, name='map'),
+    path('map/display/', views.map_view, name='map-view'),
+
+
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

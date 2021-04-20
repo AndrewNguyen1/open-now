@@ -1,6 +1,13 @@
-<!doctype html>
-{% load socialaccount %}
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
+
+{% block title %}
+map
+{% endblock title %}
+
+{% block content %}
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -101,21 +108,40 @@
         }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
-    
 </div>
-<form action="{% url 'open_now:new_discussion'%}" method="POST">
+
+{{ map|safe }}
+
+<a href="{% url 'open_now:map' %}" class="btn btn-info" role="button">Reset Address</a>
+
+<form method="POST" class="w-100">
     {% csrf_token %}
-    <input type="hidden" class="form-control" id="forum" name="forum" value={{f.id}}>
-    <h5>Forum: {{f.topic}}</h5> 
-    Discuss:
-    <input type="text" class="form-control" id="discuss" name="discuss"><br>
-    <input type="submit" class="btn btn-success" value="Submit">
-    
+    <div class="form-row">
+        <div class="form-group col-md-10 mb-0">
+            {{form.search_category | as_crispy_field}}
+        </div>
+        <div class="form-group col-md-2 mb-0">
+            {{form.radius | as_crispy_field}}
+            (in km)
+        </div>
+    </div>
+    <input type="submit" class="btn btn-success" value="Search">
 </form>
 </main>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-  
-<!-- js bundle script for bootstrap-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-</body>
-</html>
+
+
+<br>
+This product includes GeoLite2 data created by MaxMind, available from
+<a href="https://www.maxmind.com">https://www.maxmind.com</a>.
+
+
+{% if request.POST and distance is not None %}
+  <script>
+    $(window).on('load', function() {
+      $('#exampleModal').modal('show')
+    })
+  </script>
+{% endif %}
+
+
+{% endblock content %}
