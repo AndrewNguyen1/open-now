@@ -14,16 +14,32 @@ Submit a Business{% endblock top-header %}
 
 {% block upper-body %}
 
-
 {% endblock upper-body %}
 
 {% block body %}
-<div class="text-left">
-    <form method="post">
-        {% csrf_token %}
-        {{form|crispy}}
-
-        <button type="submit" class="btn btn-success">Submit Business</button>
-    </form>
-</div>
+<form method="post" class="row g-3">
+    {% csrf_token %}
+    <div class="col-12">
+        {{form.business_name | as_crispy_field}}
+    </div>
+    <div class="col-12">
+        {{form.description | as_crispy_field}}
+    </div>
+    <div class="col-md-3">
+        {{form.business_category | as_crispy_field}}
+    </div>
+    <div class="col-md-5">
+        {{form.website | as_crispy_field}}
+    </div>
+    <div class="col-md-4">
+        {{form.phone_number | as_crispy_field}}
+    </div>
+    <div class="col-12">
+        <a class="btn btn-primary" href="{% url 'open_now:business_list' %}"" role="button">Cancel</a>
+        <button type="submit" class="btn btn-success">Submit New Business</button>
+    </div>
+</form>
 {% endblock body %}
+
+{% block body-non-para %}
+{% endblock body-non-para %}
