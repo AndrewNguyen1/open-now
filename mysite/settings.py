@@ -76,7 +76,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -144,6 +144,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -153,26 +156,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
-MEDIA_URL = 'media/'
-VENV_PATH = os.path.dirname(BASE_DIR)
-MEDIA_ROOT = os.path.join(VENV_PATH, 'project-b-26/media_root')
-
 LOGIN_REDIRECT_URL = '/open_now/home'
 LOGOUT_REDIRECT_URL = '/open_now/home'
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-#
-# <<<<<<< HEAD
 #Activate Django-Heroku.
+#
 try:
     import django_heroku
     django_heroku.settings(locals(), test_runner=False)
 except ImportError:
     found = False
-
-# #
-# =======
-#django_heroku.settings(locals(), test_runner=False)
-# >>>>>>> f149f427bed413dfb2a92ebcd9a7277b65ea0550
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'

@@ -1,11 +1,7 @@
 from django.test import TestCase
-from django.db import models
 
-from http import HTTPStatus
-
-from .models import *
-from django.urls import reverse
-from django.urls import resolve
+from .models import Login
+from .models import Business
 
 # Create your tests here.
 
@@ -30,7 +26,7 @@ class LoginModelTest(TestCase):
 
     def test_bad_text(self):
         t = 'bad text'
-        self.assertNotEqual(t, self.login.text)
+        self.assertNotEqual(t, Login.text)
 
 class BusinessModelTest(TestCase):
     def setUp(self):
@@ -61,36 +57,3 @@ class BusinessModelTest(TestCase):
         self.assertNotEqual(website, self.business.website)
         self.assertNotEqual(phone, self.business.phone_number)
         self.assertNotEqual(category, self.business.business_category)
-
-class ForumModelTest(TestCase):
-    def setUp(self):
-        self.forum = Forum.objects.create(name = 'test forum', email = 'test@forum.com', topic = 'topic test', description = 'this is a test', date_created = '01/01/2021')
-        self.forum.save()
-        
-    def tearDown(self):
-        self.forum.delete()
-
-    def test_good_forum(self):
-        name = 'test forum'
-        email = 'test@forum.com'
-        topic = 'topic test'
-        description = 'this is a test'
-        date_created = models.DateTimeField(auto_now_add=True, null=True)
-        #year = date_created.year
-        self.assertEqual(name, self.forum.name)
-        self.assertEqual(email, self.forum.email)
-        self.assertEqual(topic, self.forum.topic)
-        self.assertEqual(description, self.forum.description)
-        #self.assertEqual(year, self.forum.date_created.year)
-
-    def test_bad_forum(self):
-        name = ' '
-        email = ' '
-        topic = ' '
-        description = ' '
-        date_created = models.DateTimeField(auto_now_add=True, null=True)
-        self.assertNotEqual(name, self.forum.name)
-        self.assertNotEqual(email, self.forum.email)
-        self.assertNotEqual(topic, self.forum.topic)
-        self.assertNotEqual(description, self.forum.description)
-        self.assertNotEqual(date_created, self.forum.date_created)
