@@ -65,7 +65,7 @@ def get_business(request):
     website = request.POST['website']
     business_category = request.POST['business_category']
     t = Business(business_name=business_name,description=description, phone_number = phone_number, website = website,
-                 business_category = business_category, business_hours=business_hours)
+                 business_category = business_category)
     t.save()
     return HttpResponseRedirect(reverse('open_now:business_list'))
 
