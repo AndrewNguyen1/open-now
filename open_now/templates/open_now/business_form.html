@@ -13,15 +13,17 @@ Submit a Business{% endblock top-header %}
 {% endblock p-lead %}
 
 {% block upper-body %}
-<div class="text-left">
-    <form method="post">
-        {% csrf_token %}
-        {{form|crispy}}
-        <button type="submit" class="btn btn-success">Submit Business</button>
-    </form>
-</div>
+
 
 {% endblock upper-body %}
 
 {% block body %}
+<div class="text-left">
+    <form method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+
+        <button type="submit" class="btn btn-success">Submit Business</button>
+    </form>
+</div>
 {% endblock body %}
