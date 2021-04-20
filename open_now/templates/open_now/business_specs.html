@@ -63,6 +63,9 @@
                     <a class="nav-link" aria-current="page" href="{% url 'open_now:forums' %}">Forums</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'open_now:map' %}">Map</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -94,10 +97,12 @@
 
 
 
-<div class="card" style="width: 18rem;">
+<div class="card">
   <img class="card-img-top" src="..." alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">{{business.business_name}}</h5>
+    <div class="card-header">
+    <h2 class="card-title">{{business.business_name}}</h2>
+    </div>
     <p class="card-text">{{business.description}}</p>
   </div>
   <ul class="list-group list-group-flush">
@@ -109,7 +114,133 @@
 
   </div>
 </div>
+
+<br>
+<!-- hours card -->
+<div class="card">
+    <div class="card-header">
+        <h2>Do you have additional info about their hours? Help us update them!</h2>
+    </div>
+    <div class="card-body">
+         <form action="/open_now/update-hours/" method="POST">
+    {% csrf_token %}
+<div class="form-group-row">
+ <input type="hidden" class="form-control" id="store" name="store" value={{business.business_name}}><br>
+<label for="weekday_from">From: </label>
+
+      <select id="weekday_from" name="weekday_from">
+    <option value=1>Monday</option>
+    <option value=2>Tuesday</option>
+    <option value=3>Wednesday</option>
+    <option value=4>Thursday</option>
+          <option value=5>Friday</option>
+    <option value=6>Saturday</option>
+           <option value=7>Sunday</option>
+          </select>
+
+          <label for="weekday_to">To: </label>
+
+      <select id="weekday_to" name="weekday_to">
+    <option value=1>Monday</option>
+    <option value=2>Tuesday</option>
+    <option value=3>Wednesday</option>
+    <option value=4>Thursday</option>
+          <option value=5>Friday</option>
+    <option value=6>Saturday</option>
+           <option value=7>Sunday</option>
+
+  </select>
+
+              <label for="weekday_to">From: </label>
+
+      <select id="from_hour" name="from_hour">
+    <option value=1>1:00 am</option>
+    <option value=2>2:00 am</option>
+    <option value=3>3:00 am</option>
+    <option value=4>4:00 am</option>
+          <option value=5>5:00 am</option>
+    <option value=6>6:00 am</option>
+           <option value=7>7:00 am</option>
+              <option value=8>8:00 am</option>
+    <option value=9>9:00 am</option>
+    <option value=10>10:00 am</option>
+    <option value=11>11:00 am</option>
+          <option value=12>12:00 pm</option>
+    <option value=13>1:00 pm</option>
+           <option value=14>2:00 pm</option>
+              <option value=15>3:00 pm</option>
+    <option value=16>4:00 pm</option>
+    <option value=17>5:00 pm</option>
+    <option value=18>6:00 pm</option>
+          <option value=19>7:00 pm</option>
+    <option value=20>8:00 pm</option>
+           <option value=21>9:00 pm</option>
+              <option value=22>10:00 pm</option>
+    <option value=23>11:00 pm</option>
+    <option value=24>12:00 am</option>
+
+
+
+  </select>
+
+          <select id="to_hour" name="to_hour">
+    <option value=1>1:00 am</option>
+    <option value=2>2:00 am</option>
+    <option value=3>3:00 am</option>
+    <option value=4>4:00 am</option>
+          <option value=5>5:00 am</option>
+    <option value=6>6:00 am</option>
+           <option value=7>7:00 am</option>
+              <option value=8>8:00 am</option>
+    <option value=9>9:00 am</option>
+    <option value=10>10:00 am</option>
+    <option value=11>11:00 am</option>
+          <option value=12>12:00 pm</option>
+    <option value=13>1:00 pm</option>
+           <option value=14>2:00 pm</option>
+              <option value=15>3:00 pm</option>
+    <option value=16>4:00 pm</option>
+    <option value=17>5:00 pm</option>
+    <option value=18>6:00 pm</option>
+          <option value=19>7:00 pm</option>
+    <option value=20>8:00 pm</option>
+           <option value=21>9:00 pm</option>
+              <option value=22>10:00 pm</option>
+    <option value=23>11:00 pm</option>
+    <option value=24>12:00 am</option>
+
+
+
+  </select>
+<p></p>
+    <button type="submit" class="btn btn-primary" value="submit">Submit!</button>
+    </div>
+
+
+
+</form>
+    <h2>Hours:</h2>
+         {% if hours %}
+
+         {{hours.get_weekday_from_display}} - {{hours.get_weekday_to_display}}
+         {{hours.get_from_hour_display}} - {{hours.get_to_hour_display}}
+
+        {% else %}
+    <p>No hours are available yet.</p>
+
+
+        {%endif%}
+    </div>
+    </div>
+    <!-- end hours card -->
+    <br>
+    <!-- review card -->
+    <div class="card">
+
+    <div class="card-header">
     <h2>Reviews:</h2>
+    </div>
+    <div class="card-body">
         {% if reviews %}
     {% for r in reviews %}
 
@@ -120,7 +251,7 @@
         <h5>Rating: </h5> {{r.rating}}/5
         <h5>Review: </h5>"{{r.review_text}}"
   </ul>
-    {% endfor %}
+    {%endfor%}
     </div>
 
 
@@ -131,6 +262,15 @@
 
 {% endif %}
 
+</div>
+<!-- end review card -->
+<br>
+<!-- submit review card -->
+<div class="card">
+
+    <div class="card-header">
+    <h2>Submit a Review:</h2>
+    </div>
 
          <form action="/open_now/new-review/" method="POST">
     {% csrf_token %}
@@ -139,7 +279,7 @@
   <input type="text" class="form-control" id="review_text" name="review_text"><br>
  <input type="hidden" class="form-control" id="business_name" name="business_name" value={{business.business_name}}><br>
 
-<label for="rating">How would you rate it?</label>
+<label for="rating">How would you rate {{business.business_name}}?</label>
   <select id="rating" name="rating">
     <option value=1>1</option>
     <option value=2>2</option>
@@ -155,10 +295,13 @@
 
 </form>
 
-
+</div>
+</div>
+<!-- end submit review card -->
 
 
     </div>
+
 </main><!-- /.container -->
 
 
