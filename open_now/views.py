@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
 from .models import Business, Forum, Discussion
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import * 
 from django.shortcuts import redirect, render
@@ -15,6 +15,7 @@ from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 from .utils import *
 import folium
+from django.urls import path
 from .models import Login
 
 
@@ -52,6 +53,8 @@ class BusinessFormView(generic.CreateView):
     model = Business
     template_name = 'open_now/business_form.html'
     fields = ('business_name','description','website','phone_number','business_category')
+    def get_success_url(self):
+        return reverse('open_now:business_list')
     def get_queryset(self):
         """
         """
