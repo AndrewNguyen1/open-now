@@ -27,11 +27,11 @@ class SearchForm(ModelForm):
 		model = Search
 		fields = ['search_category', 'radius']
 
-class BusinessImageForm(ModelForm):
+"""class BusinessImageForm(ModelForm):
     class Meta:
         model = Business
         fields = ['business_image']
-        widgets = {'business_image': forms.ClearableFileInput(attrs={'class': 'form-control mt-2 mb-4'})}
+        widgets = {'business_image': forms.ClearableFileInput(attrs={'class': 'form-control mt-2 mb-4'})}"""
 
 class CreateBusinessForm(ModelForm):
     class Meta:
