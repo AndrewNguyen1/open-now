@@ -63,6 +63,9 @@
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{% url 'open_now:forums' %}">Forums</a>
             </li>
+            <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'open_now:map' %}">Map</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
                 </li>
@@ -101,7 +104,7 @@
             </form>
         </h2>
             <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
-            {% for f in forums %}
+            {% for f in forums reversed%}
 
                 <div class="card box container">
                     <br>
@@ -123,9 +126,9 @@
                             {% endif %}
                             {%endfor%}
                             {%endfor%}
-                            <form method="POST" action="{% url 'open_now:new_discussion' %}">
+                            <form method="POST" action="{% url 'open_now:discuss' f.id %}">
                                 {% csrf_token %}
-                            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add More</button>
+                            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;" >Add More</button>
                             </form>
                         </div>
                 </div>

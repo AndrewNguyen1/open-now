@@ -65,6 +65,9 @@
                     <a class="nav-link" aria-current="page" href="{% url 'open_now:forums' %}">Forums</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'open_now:map' %}">Map</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -110,8 +113,31 @@
     <option value="SHOP">Retail</option>
     <option value="GYM">Gym or Workout</option>
     <option value="NONE">Other or Unspecified</option>
-  </select><br>
-<a href="{% url 'open_now:create_businessimage' %}">Upload Image</a>
+  </select>
+
+<!-- 
+  <form action="/open_now/new-review/" method="POST">
+    {% csrf_token %}
+<div class="form-group-column">
+  <label for="review_text" class="form-label">Hours?</label><br>
+  <input type="text" class="form-control" id="review_text" name="review_text"><br>
+ <input type="hidden" class="form-control" id="business_name" name="business_name" value={{business.business_name}}><br>
+
+<label for="rating">How would you rate it?</label>
+  <select id="rating" name="rating">
+    <option value=1>1</option>
+    <option value=2>2</option>
+    <option value=3>3</option>
+    <option value=4>4</option>
+      <option value=5>5</option>
+  </select>
+<p></p>
+    <button type="submit" class="btn btn-primary" value="submit">Submit!</button>
+    </div>
+</form> -->
+
+
+
 <p></p>
     <button type="submit" class="btn btn-primary" value="submit">Submit!</button>
     </div>
