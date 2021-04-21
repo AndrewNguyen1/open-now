@@ -28,21 +28,21 @@ Reply to a discussion post on the OpenNow forum!
         <input type="text" class="form-control" id="discuss" name="discuss">
     </div>
     <div class="col-12">
-        <a class="btn btn-primary" href="{% url 'open_now:forums' %}"" role="button">Cancel</a>
+        <a class="btn btn-primary" href="{% url 'open_now:forums' %}" role="button">Cancel</a>
         <input type="submit" class="btn btn-success" value="Submit">
     </div>
 </form>
-<form action="{% url 'open_now:new_discussion'%}" method="post" class="row g-3">
+<!--<form action="{% url 'open_now:new_discussion'%}" method="post" class="row g-3">
     {% csrf_token %}
     {{ form | crispy}}
-    <!--<div class="col-12">
+    <div class="col-12">
         {{form | crispy}}
     </div>
     <div class="col-12">
         <a class="btn btn-primary" href="{% url 'open_now:forums' %}"" role="button">Cancel</a>
         <button type="submit" class="btn btn-success">Submit New Post</button>
-    </div>-->
-</form>
+    </div>
+</form>-->
 {% endblock body %}
 
 {% block body-non-para %}
