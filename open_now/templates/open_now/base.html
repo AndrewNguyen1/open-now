@@ -40,6 +40,11 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
+    <link href="{% static 'css/navbar.css' %}" rel="stylesheet">
+    <link href="{% static 'css/headers.css' %}" rel="stylesheet">
+    <link href="{% static 'css/heroes.css' %}" rel="stylesheet">
+
+
 </head>
 <body>
 
@@ -97,6 +102,8 @@
     {% endblock navbar %}
 </nav>
 
+{% block header-no-div %}
+{% endblock header-no-div %}
 
 <main class="container" style="padding-top:5rem">
 

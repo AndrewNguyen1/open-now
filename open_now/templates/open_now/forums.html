@@ -28,7 +28,7 @@ See what other users in the community are talking about. Chime in and <strong>sh
 
 {% endblock upper-body %}
 {% block body %}
-<small class="text-muted">{{count}} currently active discussion(s) on OpenNow.</small>
+<small class="text-muted">{{count}} currently active discussion(s) on OpenNow. All times displayed in Coordinated Universal Time (UTC).</small>
 <div class="list-group">
     <li class="list-group-item list-group-item-dark flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
@@ -45,7 +45,7 @@ See what other users in the community are talking about. Chime in and <strong>sh
     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{f.topic}}</h5>
-            <small class="text-muted">Posted by <strong>{{user.username}}</strong></small>
+            <small class="text-muted">Posted by <strong>{{user.username}}</strong> on {{f.date_created}}</small>
         </div>
         <p class="mb-3">{{f.description}}</p>
         <small class="text-muted">All replies:</small>
