@@ -58,7 +58,7 @@ See what other users in the community are talking about. Chime in and <strong>sh
         {%endfor%}
         <form method="POST" action="{% url 'open_now:discuss' f.id %}" class="mt-3 mb-1">
             {% csrf_token %}
-            <button class="btn btn-success btn-sm">Add a reply</button>
+            <button class="btn btn-success btn-sm stretched-link">Add a reply</button>
         </form>
     </a>
     {%endfor%}
