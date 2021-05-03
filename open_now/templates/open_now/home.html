@@ -9,13 +9,14 @@ Homepage - OpenNow
     <div class="row align-items-center g-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
             {% if user.is_authenticated %}
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 If you are seeing this, your Google Account is authenticated as <strong>{{user.username}}</strong>!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-
             {% else %}
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
                 If you are seeing this, your Google Account is not authenticated, and you are viewing this site as a <strong>guest</strong>.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             {% endif %}
             <h1 class="display-4 fw-bold lh-1 mb-3">Welcome to OpenNow.</h1>
