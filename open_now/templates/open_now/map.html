@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block page-title %}
-Maps - OpenNow
+Business Map Search - OpenNow
 {% endblock page-title %}
 
 {% block header-no-div %}
@@ -11,29 +11,21 @@ Maps - OpenNow
     <div class="row">
         <div class="col-4" style="padding-top:2rem">
             <div class="container">
-                <h1>Map Search</h1>
-                <p class="lead">Enter your current address to <strong>search for nearby businesses.</strong></p>
+                <h1>Nearby Business Map Search</h1>
+                <p class="lead">Enter a business category and kilometer radius to <strong>search for nearby businesses.</strong></p>
             </div>
             <div class="container">
                 <form method="POST" class="row g-3">
                     {% csrf_token %}
-                    <div class="col-12">
-                        {{form.street_address | as_crispy_field}}
-                    </div>
-                    <div class="col-12">
-                        {{form.address_2 | as_crispy_field}}
-                    </div>
-                    <div class="col-12">
-                        {{form.city | as_crispy_field}}
-                    </div>
                     <div class="col-md-8">
-                        {{form.state | as_crispy_field}}
+                        {{form.search_category | as_crispy_field}}
                     </div>
                     <div class="col-md-4">
-                        {{form.postal_code | as_crispy_field}}
+                        {{form.radius | as_crispy_field}}
                     </div>
                     <div class="col-12">
-                        <input type="submit" class="btn btn-success" value="Search">
+                        <a href="{% url 'open_now:map' %}" class="btn btn-info text-white" role="button">Reset Address</a>
+                        <input type="submit" class="btn btn-success" value="Search Nearby Businesses">
                     </div>
                 </form>
             </div>

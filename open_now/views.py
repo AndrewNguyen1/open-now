@@ -208,7 +208,7 @@ def map_view(request):
 
     # ---------------------------------------------------------------------------------------- #
     # folium map with current location marked
-    m = folium.Map(width=800, height=500, location=get_center_coordinates(lat, lng), zoom_start=17)
+    m = folium.Map(width='100%', height='100%', location=get_center_coordinates(lat, lng), zoom_start=17)
 
     folium.Marker([lat, lng], tooltip=address_or_postal_code, popup='You are here', icon=folium.Icon(color='red')).add_to(m)
 
