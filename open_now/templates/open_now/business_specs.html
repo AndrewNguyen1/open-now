@@ -137,7 +137,7 @@
                 </ul>
             </div>
 
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header bg-dark text-white">
                     Business Hours
                 </div>
@@ -149,6 +149,115 @@
                         {% else %}
                         No hours are available yet.
                         {%endif%}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">
+                    Update Business Hours
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Do you have additional info about their hours? Help us update them!
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center" style="word-break: break-all">
+                        <form action="/open_now/update-hours/" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" class="form-control" id="store" name="store" value={{business.business_name}}>
+                            <div class="row mb-1">
+                                <label for="weekday_from" class="col-sm-4 col-form-label">From:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-select" id="weekday_from" name="weekday_from">
+                                        <option value=1>Monday</option>
+                                        <option value=2>Tuesday</option>
+                                        <option value=3>Wednesday</option>
+                                        <option value=4>Thursday</option>
+                                        <option value=5>Friday</option>
+                                        <option value=6>Saturday</option>
+                                        <option value=7>Sunday</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label for="weekday_to" class="col-sm-4 col-form-label">To:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-select" id="weekday_to" name="weekday_to">
+                                        <option value=1>Monday</option>
+                                        <option value=2>Tuesday</option>
+                                        <option value=3>Wednesday</option>
+                                        <option value=4>Thursday</option>
+                                        <option value=5>Friday</option>
+                                        <option value=6>Saturday</option>
+                                        <option value=7>Sunday</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label for="from_hour" class="col-sm-4 col-form-label">From:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-select" id="from_hour" name="from_hour">
+                                        <option value=1>1:00 am</option>
+                                        <option value=2>2:00 am</option>
+                                        <option value=3>3:00 am</option>
+                                        <option value=4>4:00 am</option>
+                                        <option value=5>5:00 am</option>
+                                        <option value=6>6:00 am</option>
+                                        <option value=7>7:00 am</option>
+                                        <option value=8>8:00 am</option>
+                                        <option value=9>9:00 am</option>
+                                        <option value=10>10:00 am</option>
+                                        <option value=11>11:00 am</option>
+                                        <option value=12>12:00 pm</option>
+                                        <option value=13>1:00 pm</option>
+                                        <option value=14>2:00 pm</option>
+                                        <option value=15>3:00 pm</option>
+                                        <option value=16>4:00 pm</option>
+                                        <option value=17>5:00 pm</option>
+                                        <option value=18>6:00 pm</option>
+                                        <option value=19>7:00 pm</option>
+                                        <option value=20>8:00 pm</option>
+                                        <option value=21>9:00 pm</option>
+                                        <option value=22>10:00 pm</option>
+                                        <option value=23>11:00 pm</option>
+                                        <option value=24>12:00 am</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                    <label for="to_hour" class="col-sm-4 col-form-label">To:</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-select" id="to_hour" name="to_hour">
+                                            <option value=1>1:00 am</option>
+                                            <option value=2>2:00 am</option>
+                                            <option value=3>3:00 am</option>
+                                            <option value=4>4:00 am</option>
+                                            <option value=5>5:00 am</option>
+                                            <option value=6>6:00 am</option>
+                                            <option value=7>7:00 am</option>
+                                            <option value=8>8:00 am</option>
+                                            <option value=9>9:00 am</option>
+                                            <option value=10>10:00 am</option>
+                                            <option value=11>11:00 am</option>
+                                            <option value=12>12:00 pm</option>
+                                            <option value=13>1:00 pm</option>
+                                            <option value=14>2:00 pm</option>
+                                            <option value=15>3:00 pm</option>
+                                            <option value=16>4:00 pm</option>
+                                            <option value=17>5:00 pm</option>
+                                            <option value=18>6:00 pm</option>
+                                            <option value=19>7:00 pm</option>
+                                            <option value=20>8:00 pm</option>
+                                            <option value=21>9:00 pm</option>
+                                            <option value=22>10:00 pm</option>
+                                            <option value=23>11:00 pm</option>
+                                            <option value=24>12:00 am</option>
+                                        </select>
+                                    </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-success btn-sm" value="submit">Update Hours</button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -175,103 +284,7 @@
 {% endblock upper-body %}
 
 {% block body %}
-<form action="/open_now/update-hours/" method="POST">
-    {% csrf_token %}
-    <div class="form-group-row">
-        <input type="hidden" class="form-control" id="store" name="store" value={{business.business_name}}><br>
-        <label for="weekday_from">From: </label>
 
-        <select id="weekday_from" name="weekday_from">
-            <option value=1>Monday</option>
-            <option value=2>Tuesday</option>
-            <option value=3>Wednesday</option>
-            <option value=4>Thursday</option>
-            <option value=5>Friday</option>
-            <option value=6>Saturday</option>
-            <option value=7>Sunday</option>
-        </select>
-
-        <label for="weekday_to">To: </label>
-
-        <select id="weekday_to" name="weekday_to">
-            <option value=1>Monday</option>
-            <option value=2>Tuesday</option>
-            <option value=3>Wednesday</option>
-            <option value=4>Thursday</option>
-            <option value=5>Friday</option>
-            <option value=6>Saturday</option>
-            <option value=7>Sunday</option>
-
-        </select>
-
-        <label for="weekday_to">From: </label>
-
-        <select id="from_hour" name="from_hour">
-            <option value=1>1:00 am</option>
-            <option value=2>2:00 am</option>
-            <option value=3>3:00 am</option>
-            <option value=4>4:00 am</option>
-            <option value=5>5:00 am</option>
-            <option value=6>6:00 am</option>
-            <option value=7>7:00 am</option>
-            <option value=8>8:00 am</option>
-            <option value=9>9:00 am</option>
-            <option value=10>10:00 am</option>
-            <option value=11>11:00 am</option>
-            <option value=12>12:00 pm</option>
-            <option value=13>1:00 pm</option>
-            <option value=14>2:00 pm</option>
-            <option value=15>3:00 pm</option>
-            <option value=16>4:00 pm</option>
-            <option value=17>5:00 pm</option>
-            <option value=18>6:00 pm</option>
-            <option value=19>7:00 pm</option>
-            <option value=20>8:00 pm</option>
-            <option value=21>9:00 pm</option>
-            <option value=22>10:00 pm</option>
-            <option value=23>11:00 pm</option>
-            <option value=24>12:00 am</option>
-
-
-
-        </select>
-
-        <select id="to_hour" name="to_hour">
-            <option value=1>1:00 am</option>
-            <option value=2>2:00 am</option>
-            <option value=3>3:00 am</option>
-            <option value=4>4:00 am</option>
-            <option value=5>5:00 am</option>
-            <option value=6>6:00 am</option>
-            <option value=7>7:00 am</option>
-            <option value=8>8:00 am</option>
-            <option value=9>9:00 am</option>
-            <option value=10>10:00 am</option>
-            <option value=11>11:00 am</option>
-            <option value=12>12:00 pm</option>
-            <option value=13>1:00 pm</option>
-            <option value=14>2:00 pm</option>
-            <option value=15>3:00 pm</option>
-            <option value=16>4:00 pm</option>
-            <option value=17>5:00 pm</option>
-            <option value=18>6:00 pm</option>
-            <option value=19>7:00 pm</option>
-            <option value=20>8:00 pm</option>
-            <option value=21>9:00 pm</option>
-            <option value=22>10:00 pm</option>
-            <option value=23>11:00 pm</option>
-            <option value=24>12:00 am</option>
-
-
-
-        </select>
-        <p></p>
-        <button type="submit" class="btn btn-primary" value="submit">Submit!</button>
-    </div>
-
-
-
-</form>
 {{block.super}}
 {% endblock body %}
 
