@@ -128,7 +128,7 @@
                             {%for discuss in discussions%}
                             {%for objs in discuss%}  
                             {% if objs.forum == f %}
-                               <p>{{objs.username}}: {{objs.discuss}}</p>
+                               <p>{{objs.email}}: {{objs.discuss}}</p>
                                <br>
                             {% endif %}
                             {%endfor%}

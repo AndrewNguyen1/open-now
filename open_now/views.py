@@ -76,14 +76,23 @@ def search_business(request):
     return render(request, 'open_now/search_business.html', params)
 
 def new_forum(request):
+    
     form = CreateInForum()
     if request.method == 'POST':
-        form = CreateInForum(request.POST)
+        forum = Forum(email = request.user)
+        form = CreateInForum(request.POST, instance=forum)
         if form.is_valid():
-            form.save()
+            forum.save()
             return redirect('/open_now/forums')
     context ={'form':form}
     return render(request,'open_now/new_forum.html',context)
+    # email=request.user.email
+    # topic= request.POST['topic']
+    # description = request.POST['description']
+    # newForum = Forum(email=email, topic=topic, description=description)
+    # newForum.save()
+    # return HttpResponseRedirect(reverse('open_now:forums'))
+    
 
 def discuss(request, pk):
     discussion = Forum.objects.get(id=pk)
@@ -93,11 +102,11 @@ def discuss(request, pk):
     return render(request, 'open_now/new_discussion.html', context)
  
 def new_discussion(request):
-
+    # user = request.user
     discuss = request.POST['discuss']
     forum_topic = request.POST['forum']
     forum = Forum.objects.get(id=forum_topic)
-    newDiscuss = Discussion(forum=forum ,discuss=discuss)
+    newDiscuss = Discussion(forum=forum ,discuss=discuss, email = request.user)
     newDiscuss.save()
     return HttpResponseRedirect(reverse('open_now:forums'))
 
@@ -128,7 +137,7 @@ def get_review(request):
 
     review_text = request.POST['review_text']
     rating = request.POST['rating']
-    b.review_set.create(review_text = review_text, rating = rating)
+    b.review_set.create(review_text = review_text, rating = rating, user = request.user)
 
     return HttpResponseRedirect(reverse('open_now:business_list'))
 
