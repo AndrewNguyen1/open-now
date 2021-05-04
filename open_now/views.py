@@ -70,7 +70,7 @@ def get_business(request):
     return HttpResponseRedirect(reverse('open_now:business_list'))
 
 def search_business(request):
-    srh = request.GET['query']
+    srh = request.GET['query'].lower().strip()
     businesses = Business.objects.filter(business_name__icontains=srh) | Business.objects.filter(description__icontains=srh) | Business.objects.filter(business_category__icontains=srh)
     params={'businesses': businesses, 'search':srh}
     return render(request, 'open_now/search_business.html', params)

@@ -96,10 +96,30 @@
         <div>
             <h1>Search Result</h1>
             <ul>
-                {% for b in businesses %}
-                <li>
+                {% for business in businesses %}
+                <!-- <li>
                   {{ b.business_name }}, {{ b.website }}
-                </li>
+                </li> -->
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{business.business_name}}</h5>
+    <p class="card-text">{{business.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{business.phone_number}}</li>
+
+  </ul>
+  <div class="card-body">
+    <a href={{business.website}} class="card-link">Find us Online!</a>
+
+  </div>
+     <div class="card-body">
+    <a href=/open_now/businesses/{{business.business_name}} class="card-link">Find Out More!</a>
+
+  </div>
+</div>
                 {% endfor %}
             </ul>
         

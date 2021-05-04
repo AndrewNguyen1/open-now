@@ -106,6 +106,7 @@
 <form action="{% url 'open_now:new_forum' %}" method="POST">
     {% csrf_token %}
     {{form.as_p}}
+    <input type="hidden" class="form-control" id="email" name="email" value={{user.email}}}>
     <input type="submit" class="btn btn-success" value="Submit">
 </form>
 </main>
