@@ -29,7 +29,9 @@ Business Map Search - OpenNow
                     </div>
                 </form>
             </div>
-            <div class="container">
+            <div class="container py-2">
+                <p class="small">This product includes GeoLite2 data created by MaxMind, available from
+                    <a href="https://www.maxmind.com">https://www.maxmind.com</a></p>
             </div>
         </div>
         <div class="col-8 g-0">
@@ -37,6 +39,14 @@ Business Map Search - OpenNow
         </div>
     </div>
 </div>
+
+{% if request.POST and distance is not None %}
+<script>
+    $(window).on('load', function() {
+        $('#exampleModal').modal('show')
+    })
+</script>
+{% endif %}
 {% endblock header-no-div %}
 
 {% block top-header %}
