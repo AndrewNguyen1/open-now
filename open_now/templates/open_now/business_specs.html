@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-8">
             <h1>{{business.business_name}}</h1>
-            <p><strong>
+            <p class="text-muted"><strong>
                 {% if business.business_category == "REST" %}
                 RESTAURANT
                 {% endif %}
@@ -35,11 +35,55 @@
             </strong></p>
             <p class="lead">{{business.description}}</p>
             <hr>
+            <p class="small">Reviews sorted latest to oldest.</p>
+            <div class="card mb-3">
+                <h5 class="card-header">Submit a Review</h5>
+                <div class="card-body">
+
+                    <!-- <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a> -->
+
+                    <form action="/open_now/new-review/" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">How would you rate {{business.business_name}}?</label>
+                            <select class="form-select" id="rating" name="rating">
+                                <option value=1>1 star</option>
+                                <option value=2>2 stars</option>
+                                <option value=3>3 stars</option>
+                                <option value=4>4 stars</option>
+                                <option value=5>5 stars</option>
+                            </select>
+                            <div id="ratingHelpText" class="form-text">
+                                1 star being very bad, 5 stars being very good.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="review_text" class="form-label">What did you think?</label>
+                            <input type="text" class="form-control" id="review_text" placeholder="Your thoughts on this business" name="review_text">
+                            <input type="hidden" class="form-control" id="business_name" name="business_name" value={{business.business_name}}>
+                        </div>
+                        <button type="submit" class="btn btn-success mb-1">Submit Review</button>
+                        {% if user.is_authenticated %}
+                        <p class="card-text small text-muted">Submitting as <strong>{{user.username}}.</strong></p>
+                        {% else %}
+                        <p class="card-text small text-muted">Submitting as <strong>anonymous user.</strong></p>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
             {% if reviews %}
-                {% for r in reviews %}
+                {% for r in reviews reversed %}
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">{{r.user}}</h5>
+                            <h5 class="card-title">
+                                {% if r.user == "AnonymousUser" %}
+                                Anonymous User
+                                {% else %}
+                                {{r.user}}
+                                {% endif %}
+                            </h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 {% if r.rating == 1 %}
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
@@ -61,7 +105,7 @@
                                 {% if r.review_text %}
                                 {{r.review_text}}
                                 {% else %}
-                                <emphasis>No review text available.</emphasis>
+                                <em>No review text available.</em>
                                 {% endif %}
                             </p>
                         </div>
