@@ -45,14 +45,14 @@ See what other users in the community are talking about. Chime in and <strong>sh
     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{f.topic}}</h5>
-            <small class="text-muted">Posted by <strong>{{user.username}}</strong> on {{f.date_created}}</small>
+            <small class="text-muted">Posted by <strong>{{f.email}}</strong> on {{f.date_created}}</small>
         </div>
         <p class="mb-3">{{f.description}}</p>
         <small class="text-muted">All replies:</small>
         {%for discuss in discussions%}
             {%for objs in discuss%}
                 {% if objs.forum == f %}
-                    <p class="mb-1"><i class="bi bi-chat-right-text p-2"></i></i><strong>{{user.username}}:</strong> {{objs.discuss}}</p>
+                    <p class="mb-1"><i class="bi bi-chat-right-text p-2"></i></i><strong>{{f.name}}:</strong> {{objs.discuss}}</p>
                 {% endif %}
             {%endfor%}
         {%endfor%}

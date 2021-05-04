@@ -154,8 +154,9 @@ def get_hours(request):
 
 def location_view(request):
 
-    # initial folium map focused on the center of the US
-    m = folium.Map(width=800, height=500, location=get_center_coordinates(40.619290458576074, -95.65487442647927), zoom_start=4)
+    # initial folium map focused on the center of the City of Charlottesville
+    # center of US coords 40.619290458576074, -95.65487442647927
+    m = folium.Map(width='100%', height='100%', location=get_center_coordinates(38.02931,-78.47668), zoom_start=13)
     m = m._repr_html_()
 
     form = LocationForm()
