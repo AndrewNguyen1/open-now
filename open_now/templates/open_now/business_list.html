@@ -3,7 +3,7 @@
 {% block page-title %}Businesses - OpenNow{% endblock page-title %}
 
 {% block top-header %}
-Search businesses by <strong>category. . .</strong>
+Discover Businesses
 {% endblock top-header %}
 
 {% block p-lead %}
@@ -18,7 +18,20 @@ Search businesses by <strong>category. . .</strong>
                 <img src="{% static "css/restaurant-default.jpg" %}" class="card-img-top" alt="Restaurant image">
                 <div class="card-body">
                     <h5 class="card-title"><!--<a href="/open_now/businesses/{{business.business_name}}" class="stretched-link">-->{{business.business_name}}<!--</a>--></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{business.business_category}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {% if business.business_category == "REST" %}
+                        RESTAURANT
+                        {% endif %}
+                        {% if business.business_category == "SHOP" %}
+                        RETAIL
+                        {% endif %}
+                        {% if business.business_category == "GYM" %}
+                        GYM OR WORKOUT
+                        {% endif %}
+                        {% if business.business_category == "NONE" %}
+                        OTHER OR UNSPECIFIED
+                        {% endif %}
+                    </h6>
                     <p class="card-text">{{business.description | truncatechars_html:175}}</p>
                     <a href="{{business.website}}" class="btn btn-dark"><i class="bi bi-globe2 m-2 text-light"></i></a>
                     <a href="/open_now/businesses/{{business.business_name}}" class="btn btn-primary">See Details »</a>
