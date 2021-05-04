@@ -114,22 +114,26 @@
                                 <p>{{f.description}}</p>
                     </h5>
                             <hr>
-                            <p> By: {{user.username}}</p>
-                            Email: {{user.email}}
-                            <hr>     
+                            <p> By: {{f.email}}</p>
+                            <!-- Email: {{user.email}} -->
+                            <hr> 
+
                             <h4>Responses</h4>
-                            {%for discuss in discussions%}
-                            {%for objs in discuss%}  
-                            {% if objs.forum == f %}
-                               <p>{{user.username}}: {{objs.discuss}}</p>
-                               <br>
-                            {% endif %}
-                            {%endfor%}
-                            {%endfor%}
+
                             <form method="POST" action="{% url 'open_now:discuss' f.id %}">
                                 {% csrf_token %}
                             <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;" >Add More</button>
                             </form>
+
+                            {%for discuss in discussions%}
+                            {%for objs in discuss%}  
+                            {% if objs.forum == f %}
+                               <p>{{objs.email}}: {{objs.discuss}}</p>
+                               <br>
+                            {% endif %}
+                            {%endfor%}
+                            {%endfor%}
+
                         </div>
                 </div>
             </div>
