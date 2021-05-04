@@ -28,17 +28,21 @@ See what other users in the community are talking about. Chime in and <strong>sh
 
 {% endblock upper-body %}
 {% block body %}
-<small class="text-muted">{{count}} currently active discussion(s) on OpenNow. All times displayed in Coordinated Universal Time (UTC).</small>
+<small class="text-muted">{{count}} currently active discussion(s) on OpenNow. All times UTC.</small>
 <div class="list-group">
     <li class="list-group-item list-group-item-dark flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
             <h4 class="mb-1">Discussion Topic</h4>
             <h5 class="mb-1">
             </h5>
-            <form method="POST" action="{% url 'open_now:new_forum' %}">
-                {% csrf_token %}
-                <button class="btn btn-success btn-sm">Submit a Forum Post</button>
-            </form>
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'open_now:new_forum' %}">
+                    {% csrf_token %}
+                    <button class="btn btn-success btn-sm">Submit a Forum Post</button>
+                </form>
+            {% else %}
+                <button type="button" class="btn btn-success btn-sm" disabled>Sign in to submit a Forum Post</button>
+            {% endif %}
         </div>
     </li>
     {% for f in forums reversed%}
@@ -56,10 +60,17 @@ See what other users in the community are talking about. Chime in and <strong>sh
                 {% endif %}
             {%endfor%}
         {%endfor%}
-        <form method="POST" action="{% url 'open_now:discuss' f.id %}" class="mt-3 mb-1">
-            {% csrf_token %}
-            <button class="btn btn-success btn-sm stretched-link">Add a reply</button>
-        </form>
+        {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'open_now:discuss' f.id %}" class="mt-3 mb-1">
+                {% csrf_token %}
+                <button class="btn btn-success btn-sm stretched-link">Add a reply</button>
+            </form>
+        {% else %}
+        <div class="mt-3 mb-1">
+            <button class="btn btn-success btn-sm stretched-link" disabled>Sign in to add a reply</button>
+
+        </div>
+        {% endif %}
     </a>
     {%endfor%}
 </div>
