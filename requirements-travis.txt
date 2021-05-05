@@ -18,3 +18,4 @@ requests
 requests-oauthlib
 urllib3
 whitenoise
+crispy-bootstrap5
