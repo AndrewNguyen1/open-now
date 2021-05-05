@@ -28,8 +28,27 @@ Reply to a discussion post on the OpenNow forum!
         <input type="text" class="form-control" id="discuss" name="discuss">
     </div>
     <div class="col-12">
-        <a class="btn btn-primary" href="{% url 'open_now:forums' %}" role="button">Cancel</a>
-        <input type="submit" class="btn btn-success" value="Submit">
+        <a class="btn btn-danger" href="{% url 'open_now:forums' %}" role="button">Cancel</a>
+        <input type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#submitForumReplyModal" value="Submit">
+    </div>
+
+    <!-- modal to confirm forum reply submission -->
+    <div class="modal fade" id="submitForumReplyModal" tabindex="-1" aria-labelledby="submitForumReplyModal" aria-hidden="true" style="word-wrap: break-word">
+        <div class="modal-dialog modal-dialog-centered" style="word-wrap: break-word">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submitForumReplyLabel">Submit Forum Reply?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-break" style="word-wrap: break-word">
+                    Adding a reply to a post is permanent, and replies cannot be edited or deleted. <strong>Are you sure you want to post this reply?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success" value="submit">Post Reply</button>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
 <!--<form action="{% url 'open_now:new_discussion'%}" method="post" class="row g-3">
