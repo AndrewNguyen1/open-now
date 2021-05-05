@@ -34,6 +34,7 @@ Discover Businesses
                         {% endif %}
                     </h6>
                     <p class="card-text">{{business.description | truncatechars_html:175}}</p>
+                    <!--<button type="button" class="btn btn-dark">{{business.website | urlize}}<i class="bi bi-globe2 m-2 text-light"></i></button>-->
                     <a href="{{business.website}}" class="btn btn-dark"><i class="bi bi-globe2 m-2 text-light"></i></a>
                     <a href="/open_now/businesses/{{business.business_name}}" class="btn btn-primary">See Details »</a>
                 </div>
