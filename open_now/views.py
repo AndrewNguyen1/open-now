@@ -138,8 +138,9 @@ def get_review(request):
     review_text = request.POST['review_text']
     rating = request.POST['rating']
     b.review_set.create(review_text = review_text, rating = rating, user = request.user)
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
 
-    return HttpResponseRedirect(reverse('open_now:business_list'))
 
 def get_hours(request):
 
@@ -155,7 +156,9 @@ def get_hours(request):
     b.openinghours_set.create(weekday_from = weekday_from, weekday_to = weekday_to, from_hour = from_hour,
                               to_hour = to_hour)
 
-    return HttpResponseRedirect(reverse('open_now:business_list'))
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
+
 
 
 def location_view(request):

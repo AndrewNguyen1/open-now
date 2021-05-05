@@ -213,6 +213,7 @@
 
   </select>
 <p></p>
+      <input type="hidden" name="next" value="{{ request.path }}">
     <button type="submit" class="btn btn-primary" value="submit">Submit!</button>
     </div>
 
@@ -275,10 +276,11 @@
          <form action="/open_now/new-review/" method="POST">
     {% csrf_token %}
 <div class="form-group-column">
+       <input type="hidden" name="next" value="{{ request.path }}">
   <label for="review_text" class="form-label">What did you think?</label><br>
   <input type="text" class="form-control" id="review_text" name="review_text"><br>
  <input type="hidden" class="form-control" id="business_name" name="business_name" value={{business.business_name}}><br>
-
+ <input type="hidden" name="next" value="{{ request.path }}">
 <label for="rating">How would you rate {{business.business_name}}?</label>
   <select id="rating" name="rating">
     <option value=1>1</option>
