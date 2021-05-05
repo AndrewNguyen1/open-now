@@ -35,8 +35,27 @@ Submit a Business{% endblock top-header %}
         {{form.phone_number | as_crispy_field}}
     </div>
     <div class="col-12">
-        <a class="btn btn-primary" href="{% url 'open_now:business_list' %}"" role="button">Cancel</a>
-        <button type="submit" class="btn btn-success">Submit New Business</button>
+        <a class="btn btn-danger" href="{% url 'open_now:business_list' %}" role="button">Cancel</a>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#submitNewBusinessModal">Submit New Business</button>
+    </div>
+
+    <!-- modal to confirm new business submission -->
+    <div class="modal fade" id="submitNewBusinessModal" tabindex="-1" aria-labelledby="submitNewBusinessModal" aria-hidden="true" style="word-wrap: break-word">
+        <div class="modal-dialog modal-dialog-centered" style="word-wrap: break-word">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submitNewBusinessLabel">Submit New Business?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-break" style="word-wrap: break-word">
+                    Submitting a new business to OpenNow is permanent, and cannot be edited or deleted. Please confirm all details entered are correct. <strong>Are you sure you want to submit a new business?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Submit New Business</button>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
 {% endblock body %}
