@@ -28,7 +28,7 @@ See what other users in the community are talking about. Chime in and <strong>sh
 
 {% endblock upper-body %}
 {% block body %}
-<small class="text-muted">{{count}} currently active discussion(s) on OpenNow. All times UTC.</small>
+<small class="text-muted">{{count}} currently active discussion{{count|pluralize}} on OpenNow. All times UTC.</small>
 <div class="list-group">
     <li class="list-group-item list-group-item-dark flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
@@ -41,7 +41,7 @@ See what other users in the community are talking about. Chime in and <strong>sh
                     <button class="btn btn-success btn-sm">Submit a Forum Post</button>
                 </form>
             {% else %}
-                <button type="button" class="btn btn-success btn-sm" disabled>Sign in to submit a Forum Post</button>
+                <button type="button" class="btn btn-success btn-sm" disabled>Submit a Forum Post</button>
             {% endif %}
         </div>
     </li>
@@ -59,7 +59,7 @@ See what other users in the community are talking about. Chime in and <strong>sh
         </form>
         {% else %}
         <div class="mt-3 mb-1">
-            <button class="btn btn-success btn-sm stretched-link" disabled>Sign in to add a reply</button>
+            <button class="btn btn-success btn-sm stretched-link" disabled>Add a reply</button>
 
         </div>
         {% endif %}
