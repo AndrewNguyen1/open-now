@@ -42,28 +42,86 @@ Homepage - OpenNow
         </div>
     </div>
 </div>-->
+
+<!-- a useful colour palette for future use -->
+<!-- https://coolors.co/000000-14213d-fca311-e5e5e5-ffffff -->
+
+<!-- homepage image Photo by <a href="https://unsplash.com/@shofukan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Colin Avery</a> on <a href="https://unsplash.com/s/photos/diner-night?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  -->
+
+<!--<div class="container-fluid" style="padding-top:3rem">
+    <div class="row">
+        <div class="bg-image col-6">
+
+        </div>
+        <div class="col-6 g-0 bg-light" style="padding-top:2rem">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">Welcome to OpenNow.</h1>
+                    <p class="col-md-8 fs-4">You've reached Charlottesville and Albemarle County's premier site for exploring new and improved small businesses in the post-COVID era.</p>
+                    <p class="col-md-8 fs-4 fw-bold">What's new? What's changed? Let's get started!</p>
+                    <button class="btn btn-primary btn-lg" type="button">Example button</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<!-- <div class="container-fluid bg-hero vh-75" style="padding-top:3rem">
+    <div class="row">
+        <h1>test</h1>
+
+    </div>
+</div> -->
+<div class="container-fluid bg-hero" style="padding-top:7.5rem;padding-bottom: 7.5rem;">
+    <div class="container">
+        <div class="p-5 mb-4 text-white rounded-3" style="padding-top:3rem">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Welcome to OpenNow.</h1>
+                <p class="col-md-8 fs-4">You've reached Charlottesville and Albemarle County's premier site for exploring new and improved small businesses in the post-COVID era.</p>
+                <p class="col-md-8 fs-4 fw-bold">What's new? What's changed? Let's get started!</p>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-3" role="group" aria-label="First group">
+                        <a href="{% url 'open_now:map' %}" class="btn btn-secondary btn-lg fw-bold">Search Map</a>
+                    </div>
+                    <div class="btn-group me-3" role="group" aria-label="Second group">
+                        <a href="{% url 'open_now:business_list' %}" class="btn btn-primary btn-lg fw-bold">Discover Businesses »</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock header-no-div %}
 
 {% block main-container %}
-<div class="p-5 mb-4 bg-light rounded-3">
-    <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-        <button class="btn btn-primary btn-lg" type="button">Example button</button>
+<div class="row align-items-md-stretch">
+    <div class="col-md-4">
+        <div class="h-100 p-5 text-center bg-light border rounded-3">
+            <h2>Support C'ville</h2>
+            <p>Help local businesses recover from the impacts of the COVID-19 pandemic. Submit a new business to put them on the map!</p>
+            <a href="{% url 'open_now:business_form' %}" class="btn btn-outline-secondary">Add Business</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="h-100 p-5 text-center bg-light border rounded-3">
+            <h2>Find your Favourites</h2>
+            <p>Beyond Grounds, there's more to Charlottesville than just O'Hill and Newcomb. Find your next favourite business and see the magic of C'ville.</p>
+            <a href="{% url 'open_now:business_list' %}" class="btn btn-outline-secondary">Discover C'ville</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="h-100 p-5 text-center bg-light border rounded-3">
+            <h2>Connect with Others</h2>
+            <p>See what places fellow community members are talking about and enjoying the most. Engage with your peers and share your own thoughts!</p>
+            <a href="{% url 'open_now:forums' %}" class="btn btn-outline-secondary">See Forums</a>
+        </div>
     </div>
 </div>
-{% endblock main-container %}
-
-{% block top-header %}
-
-    You've reached the OpenNow homepage.
-{% endblock top-header %}
-
-{% block p-lead %}
-    This site is still in development.<strong> Check back later to explore local businesses.</strong><br>Verify that the account information below, if shown, is correct.
-{% endblock p-lead %}
-
-{% block upper-body %}
+<div class="container mt-5">
     {% if user.is_authenticated %}
     <div class="alert alert-success" role="alert">
         If you are seeing this, your Google Account is authenticated as <strong>{{user.username}}</strong>!
@@ -74,10 +132,28 @@ Homepage - OpenNow
         If you are seeing this, your Google Account is not authenticated, and you are viewing this site as a <strong>guest</strong>.
     </div>
     {% endif %}
+</div>
+{% endblock main-container %}
+
+{% block top-header %}
+
+{% endblock top-header %}
+
+{% block p-lead %}
+
+{% endblock p-lead %}
+
+{% block upper-body %}
+
 {% endblock upper-body %}
 
 {% block body %}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ipsum nibh, iaculis fermentum risus non, facilisis euismod orci. Cras feugiat augue aliquet, rhoncus sapien ut, placerat metus. Curabitur euismod tincidunt felis eget eleifend. Cras gravida nisi in mauris consequat mollis. Sed tellus nisi, fermentum commodo dui in, tincidunt bibendum sem. Quisque pulvinar, nisi vitae porta eleifend, turpis dolor sagittis lacus, in scelerisque tellus elit id enim. Mauris ac iaculis nisi. Nulla facilisi. Pellentesque a tortor eu arcu dapibus tristique. Sed sagittis bibendum ante, et placerat elit posuere tempus. Vivamus rhoncus, tellus in bibendum lacinia, nisi leo facilisis quam, vitae maximus leo nunc et leo. Phasellus varius felis mattis lorem varius, ac placerat est scelerisque.
-
-Donec posuere faucibus risus, sit amet laoreet purus lacinia in. Nulla et suscipit nulla. Etiam dignissim faucibus ex non convallis. Nulla in libero nec mauris finibus convallis. Curabitur hendrerit, dolor et pharetra ullamcorper, nisi lectus vehicula velit, sed semper massa diam quis sapien. Morbi lorem libero, auctor eu molestie et, rutrum ac dui. Phasellus finibus tellus ut condimentum cursus.
 {% endblock body %}
+
+{% block footer %}
+<footer class="container pt-2">
+    {% block footer-content %}
+    {{block.super}}
+    {% endblock footer-content %}
+</footer>
+{% endblock footer %}
