@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 SITE_ID = 1
@@ -146,7 +147,9 @@ USE_TZ = True
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -158,7 +161,9 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 LOGIN_REDIRECT_URL = '/open_now/home'
 LOGOUT_REDIRECT_URL = '/open_now/home'
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+#Activate Django-Heroku.
+#
 try:
     import django_heroku
     django_heroku.settings(locals(), test_runner=False)

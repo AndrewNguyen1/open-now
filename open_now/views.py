@@ -5,17 +5,17 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
 from .models import Business, Forum, Discussion
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import * 
-from django.shortcuts import redirect
-
-
+from django.shortcuts import redirect, render
+from django.views.generic import CreateView
 from django.views import generic
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 from .utils import *
 import folium
+from django.urls import path
 from .models import Login
 
 
@@ -49,9 +49,12 @@ class BusinessView(generic.ListView):
         return Business.objects.all()
         return
 
-class BusinessFormView(generic.ListView):
+class BusinessFormView(generic.CreateView):
+    model = Business
     template_name = 'open_now/business_form.html'
-
+    fields = ('business_name','description','website','phone_number','business_category')
+    def get_success_url(self):
+        return reverse('open_now:business_list')
     def get_queryset(self):
         """
         """
@@ -160,8 +163,9 @@ def get_hours(request):
 
 def location_view(request):
 
-    # initial folium map focused on the center of the US
-    m = folium.Map(width=800, height=500, location=get_center_coordinates(40.619290458576074, -95.65487442647927), zoom_start=4)
+    # initial folium map focused on the center of the City of Charlottesville
+    # center of US coords 40.619290458576074, -95.65487442647927
+    m = folium.Map(width='100%', height='100%', location=get_center_coordinates(38.02931,-78.47668), zoom_start=13)
     m = m._repr_html_()
 
     form = LocationForm()
@@ -213,7 +217,7 @@ def map_view(request):
 
     # ---------------------------------------------------------------------------------------- #
     # folium map with current location marked
-    m = folium.Map(width=800, height=500, location=get_center_coordinates(lat, lng), zoom_start=17)
+    m = folium.Map(width='100%', height='100%', location=get_center_coordinates(lat, lng), zoom_start=17)
 
     folium.Marker([lat, lng], tooltip=address_or_postal_code, popup='You are here', icon=folium.Icon(color='red')).add_to(m)
 
@@ -288,3 +292,25 @@ def map_view(request):
         'map': m,
     }
     return render(request, 'open_now/map.html', context)
+    
+def create_businessimage(request):
+    form = BusinessImageForm()
+    if request.method == 'POST':
+        form = BusinessImageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/open_now/business-form')
+    context = { 'form':form }
+    return render(request,'open_now/business-form/create-businessimage.html',context)
+
+"""def createNewBusiness(request):
+    form = CreateBusinessForm()
+    if request.method == 'POST':
+        form = CreateBusinessForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/open_now/business-form')
+    else:
+        form = CreateBusinessForm()
+    context={'form':form}
+    return render(request, 'open_now/business_form.html',context)"""

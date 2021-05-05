@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from .models import *
+from django import forms
  
 class CreateInForum(ModelForm):
     class Meta:
@@ -25,3 +26,14 @@ class SearchForm(ModelForm):
 	class Meta:
 		model = Search
 		fields = ['search_category', 'radius']
+
+"""class BusinessImageForm(ModelForm):
+    class Meta:
+        model = Business
+        fields = ['business_image']
+        widgets = {'business_image': forms.ClearableFileInput(attrs={'class': 'form-control mt-2 mb-4'})}"""
+
+class CreateBusinessForm(ModelForm):
+    class Meta:
+        model = Business
+        fields = ['business_name','description','website','phone_number','business_category']
