@@ -28,10 +28,20 @@ Submit a Business{% endblock top-header %}
         {{form.business_category | as_crispy_field}}
     </div>
     <div class="col-md-5">
-        {{form.website | as_crispy_field}}
+        <!--{{form.website | as_crispy_field}}-->
+        <label for="website" class="form-label mb-0">Website*</label>
+        <input type="url" class="form-control" id="website" name="website" pattern="https://.*">
+        <div id="websiteHelpBlock" class="form-text">
+            format: https://website.com/
+        </div>
     </div>
     <div class="col-md-4">
         {{form.phone_number | as_crispy_field}}
+        <!--<label for="phone_number" class="form-label mb-0">Phone Number*</label>
+        <input type="tel" class="form-control" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+        <div id="phone_numberHelpBlock" class="form-text">
+            format: 434-555-5555
+        </div>-->
     </div>
     <div class="col-12">
         <a class="btn btn-danger" href="{% url 'open_now:business_list' %}" role="button">Cancel</a>
