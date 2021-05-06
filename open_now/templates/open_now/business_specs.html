@@ -47,6 +47,7 @@
                     <form action="/open_now/new-review/" method="POST">
                         {% csrf_token %}
                         <div class="mb-3">
+                            <input type="hidden" name="next" value="{{ request.path }}">
                             <label for="rating" class="form-label">How would you rate {{business.business_name}}?</label>
                             <select class="form-select" id="rating" name="rating">
                                 <option value=1>1 star</option>
@@ -60,6 +61,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <input type="hidden" name="next" value="{{ request.path }}">
                             <label for="review_text" class="form-label">What did you think?</label>
                             <input type="text" class="form-control" id="review_text" placeholder="Your thoughts on this business" name="review_text">
                             <input type="hidden" class="form-control" id="business_name" name="business_name" value={{business.business_name}}>
@@ -77,6 +79,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Submit Review?</h5>
+                                        
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -286,11 +289,13 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="updateBusinessHoursLabel">Update Business Hours?</h5>
+                                            <input type="hidden" name="next" value="{{ request.path }}">
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body text-break" style="word-wrap: break-word">
                                             Updating business hours will override the current hours for this business, and cannot be undone. <strong>Are you sure you want to update business hours?</strong>
                                         </div>
+                                        
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                                             <button type="submit" class="btn btn-success" value="submit">Update Business Hours</button>
