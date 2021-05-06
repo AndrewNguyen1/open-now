@@ -39,6 +39,14 @@ class HomeView(generic.ListView):
         """
         return
 
+class AboutView(generic.ListView):
+    template_name = 'open_now/about.html'
+
+    def get_queryset(self):
+        """
+        """
+        return
+
 class BusinessView(generic.ListView):
     template_name = 'open_now/business_list.html'
     context_object_name = 'business_list'
