@@ -76,7 +76,7 @@
                     <a class="nav-link" aria-current="page" href="{% url 'open_now:map' %}">Map</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/uva-cs3240-s21/project-b-26">About</a>
+                    <a class="nav-link" href="{% url 'open_now:about' %}">About</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
@@ -157,7 +157,7 @@
         <div class="col-6 col-md">
             <h5>About</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">About OpenNow</a></li>
+                <li><a class="link-secondary" href="{% url 'open_now:about' %}">About OpenNow</a></li>
                 <li><a class="link-secondary" href="https://github.com/uva-cs3240-s21/project-b-26"><i class="bi bi-file-lock2-fill" style="margin-right:0.25rem"></i>GitHub</a></li>
                 <li><a class="link-secondary" href="https://cs3240.cs.virginia.edu/">CS 3240 Course</a></li>
             </ul>
