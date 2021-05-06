@@ -47,7 +47,7 @@ Discover Businesses
                         {{business.hours.get_weekday_from_display}} - {{business.hours.get_weekday_to_display}}
                         {{hours.get_from_hour_display}} - {{hours.get_to_hour_display}}
                         {% else %}
-                        N/A (be the first to share!)
+                        <a href="/open_now/businesses/{{business.business_name}}">See business details »</a>
                         {% endif %}
                     </small>
                 </div>
