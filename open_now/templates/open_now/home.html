@@ -98,6 +98,18 @@ Homepage - OpenNow
 {% endblock header-no-div %}
 
 {% block main-container %}
+<div class="container mb-5">
+    {% if user.is_authenticated %}
+    <div class="alert alert-success" role="alert">
+        If you are seeing this, your Google Account is authenticated as <strong>{{user.username}}</strong>!
+    </div>
+
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        If you are seeing this, your Google Account is not authenticated, and you are viewing this site as a <strong>guest</strong>.
+    </div>
+    {% endif %}
+</div>
 <div class="row align-items-md-stretch">
     <div class="col-md-4">
         <div class="h-100 p-5 text-center bg-light border rounded-3">
@@ -120,18 +132,6 @@ Homepage - OpenNow
             <a href="{% url 'open_now:forums' %}" class="btn btn-outline-secondary">See Forums</a>
         </div>
     </div>
-</div>
-<div class="container mt-5">
-    {% if user.is_authenticated %}
-    <div class="alert alert-success" role="alert">
-        If you are seeing this, your Google Account is authenticated as <strong>{{user.username}}</strong>!
-    </div>
-
-    {% else %}
-    <div class="alert alert-info" role="alert">
-        If you are seeing this, your Google Account is not authenticated, and you are viewing this site as a <strong>guest</strong>.
-    </div>
-    {% endif %}
 </div>
 {% endblock main-container %}
 

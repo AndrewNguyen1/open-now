@@ -67,8 +67,10 @@
 		</div>
 		{% if user.is_authenticated %}
 		<p>
-			. . . or <a href="/accounts/logout" class="text-light" >logout</a> (beta feature)
+			You're currently signed in as <strong>{{user.username}}</strong>. <a href="/accounts/logout" class="text-light" >Logout here »</a>
 		</p>
+		{% else %}
+		<p>You're currently <strong>not signed in.</strong></p>
 		{% endif %}
 	</main>
 
